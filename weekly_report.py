@@ -22,6 +22,10 @@ import re
 import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from dotenv import load_dotenv
+
+# 加载 .env（同目录）
+load_dotenv(Path(__file__).parent / ".env")
 
 # ── 配置 ──────────────────────────────────────────────────────────────
 BASE_DIR    = Path("/home/averypi/Projects/jobsearch/githubsummary")
@@ -80,12 +84,16 @@ def get_commits(repo_name, since_iso):
 
 def summarize_with_claude(repo_name, info, commits):
     """用 claude-haiku 生成单项目进展摘要（需 ANTHROPIC_API_KEY）"""
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    api_key  = os.environ.get("ANTHROPIC_API_KEY")
+    base_url = os.environ.get("ANTHROPIC_BASE_URL")
     if not api_key:
         return None
     try:
         import anthropic
-        client = anthropic.Anthropic(api_key=api_key)
+        kwargs = {"api_key": api_key}
+        if base_url:
+            kwargs["base_url"] = base_url
+        client = anthropic.Anthropic(**kwargs)
         commit_text = "\n".join(f"- {c}" for c in commits[:20])
         resp = client.messages.create(
             model="claude-haiku-4-5-20251001",

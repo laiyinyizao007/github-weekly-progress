@@ -187,6 +187,12 @@
 
 ## 近期 GitHub 项目
 
+### 本周进展
+
+<!-- WEEKLY_PROGRESS_START -->
+*尚未生成，下次运行 weekly_report.py 后自动更新*
+<!-- WEEKLY_PROGRESS_END -->
+
 <!-- GITHUB_PROJECTS_START -->
 *自动更新于 2026-08-27（UTC）*
 

@@ -69,17 +69,35 @@ def get_week_range(dt=None):
     return monday.strftime("%Y-%m-%d"), sunday.strftime("%Y-%m-%d")
 
 
+NOISE_PATTERNS = {
+    "co-authored-by:", "x-lovable-edit-id:", "changes", "update",
+    "co-author:", "signed-off-by:",
+}
+
 def get_commits(repo_name, since_iso):
-    """获取仓库自 since_iso 以来的 commits（标题行）"""
+    """获取仓库自 since_iso 以来的 commits（标题行，过滤噪音）"""
     out = run_gh([
-        "api", f"/repos/{GITHUB_USER}/{repo_name}/commits",
-        "--jq", ".[].commit.message",
-        "-F", f"since={since_iso}",
-        "-F", "per_page=50",
+        "api",
+        f"/repos/{GITHUB_USER}/{repo_name}/commits?since={since_iso}&per_page=50",
+        "--jq", '[.[].commit.message | split("\n")[0]]',
     ])
     if not out:
         return []
-    return [ln.split("\n")[0].strip() for ln in out.splitlines() if ln.strip()]
+    try:
+        titles = json.loads(out)
+    except json.JSONDecodeError:
+        titles = [ln.strip() for ln in out.splitlines() if ln.strip()]
+    # 过滤空行和 Lovable/bot 自动生成的噪音 commit
+    result = []
+    for t in titles:
+        t = t.strip()
+        if not t:
+            continue
+        low = t.lower()
+        if any(low.startswith(p) or low == p for p in NOISE_PATTERNS):
+            continue
+        result.append(t)
+    return result
 
 
 def summarize_with_claude(repo_name, info, commits):

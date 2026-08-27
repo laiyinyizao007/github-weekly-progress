@@ -190,7 +190,13 @@
 ### 本周进展
 
 <!-- WEEKLY_PROGRESS_START -->
-*尚未生成，下次运行 weekly_report.py 后自动更新*
+*周报 2026-W35（2026-08-24 ~ 2026-08-30）· 3 个项目有更新*
+
+**🌿 Green Compass** — 优化了报告生成和错误处理，完成数据库迁移，增强了 Copilot 交互体验。
+**🎨 Atomic Craft UI** — 完成后台管理界面开发，优化产品卡片和广告页UI，实现语音捕捉功能，改进用户交互流程。
+**🚀 ArkSus Demo** — 本周完成M系列验证与P4-B设计同步，推进数字孪生映射与阴影授权体系建设。
+
+📄 [完整周报 →](weekly-reports/2026-W35.md)
 <!-- WEEKLY_PROGRESS_END -->
 
 <!-- GITHUB_PROJECTS_START -->

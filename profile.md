@@ -67,17 +67,17 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 | Project | Description | Stack |
 |---------|-------------|-------|
-| [🌿 **Green Compass**](https://github.com/laiyinyizao007/green-compass-net-f3505092) | Carbon footprint tracking and management platform | `TypeScript · React · Sustainability` |
-| [🚀 **Arksu**](https://github.com/laiyinyizao007/arksusdemo) | Recently active project | `TypeScript` |
+| **[🌿 Green Compass](https://github.com/laiyinyizao007/green-compass-net-f3505092)** | Carbon footprint tracking and management platform | `TypeScript · React · Sustainability` |
+| **[🚀 Arksu](https://github.com/laiyinyizao007/arksusdemo)** | Recently active project | `TypeScript` |
 
 **Personal**
 
 | Project | Description | Stack |
 |---------|-------------|-------|
-| [🧠 **LifeOS**](https://github.com/laiyinyizao007/lovable-life-hub) | Event-driven personal OS — LLM-orchestrated workflows, Google Calendar / Notion integration | `TypeScript · React · Supabase` |
-| [🌐 **Digital Twin**](https://github.com/laiyinyizao007/my-digital-twin) | Interactive portfolio — D3.js force-directed skill graph, i18n, Supabase | `TypeScript · React · D3.js` |
-| [🤖 **GitHub RAG Agent**](https://github.com/laiyinyizao007/mygithubprojectagent) | RAG agent for private repo Q&A with automatic sensitive-data sanitization | `Python · RAG · LLM` |
-| [📓 **Obsidian Second Brain**](https://github.com/laiyinyizao007/obs-averivendell) | Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access) | `JavaScript · Obsidian · Claude Code` |
+| **[🧠 LifeOS](https://github.com/laiyinyizao007/lovable-life-hub)** | Event-driven personal OS — LLM-orchestrated workflows, Google Calendar / Notion integration | `TypeScript · React · Supabase` |
+| **[🌐 Digital Twin](https://github.com/laiyinyizao007/my-digital-twin)** | Interactive portfolio — D3.js force-directed skill graph, i18n, Supabase | `TypeScript · React · D3.js` |
+| **[🤖 GitHub RAG Agent](https://github.com/laiyinyizao007/mygithubprojectagent)** | RAG agent for private repo Q&A with automatic sensitive-data sanitization | `Python · RAG · LLM` |
+| **[📓 Obsidian Second Brain](https://github.com/laiyinyizao007/obs-averivendell)** | Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access) | `JavaScript · Obsidian · Claude Code` |
 
 *auto-updated 2026-08-28 UTC*
 <!-- GITHUB_PROJECTS_END -->
@@ -108,4 +108,4 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 ---
 
-*Last updated: <!-- LAST_UPDATED -->2026-08-28 09:42 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*
+*Last updated: <!-- LAST_UPDATED -->2026-08-28 09:59 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*

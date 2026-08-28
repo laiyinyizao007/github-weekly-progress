@@ -21,56 +21,55 @@ NO_PUSH = "--no-push" in sys.argv
 PROJECT_SERIES = {
     "green-compass": {
         "name": "Green Compass",
-        "desc": "碳排放追踪与管理平台",
+        "desc": "Carbon footprint tracking and management platform",
         "icon": "🌿",
-        "tags": ["TypeScript", "React", "可持续发展"],
+        "tags": ["TypeScript", "React", "Sustainability"],
     },
     "fidelity-craftsmen": {
         "name": "Fidelity Craftsmen",
-        "desc": "AI 职业健康管理系统（GBZ 188-2025 标准）",
+        "desc": "AI occupational health management SaaS (GBZ 188-2025 compliant)",
         "icon": "🏥",
-        "tags": ["TypeScript", "AI", "健康管理"],
+        "tags": ["TypeScript", "AI", "Health"],
     },
     "pact-nexus-light": {
         "name": "Pact Nexus Light",
-        "desc": "轻量级合约测试框架",
+        "desc": "Lightweight contract testing framework",
         "icon": "🔗",
-        "tags": ["TypeScript", "PostgreSQL", "测试框架"],
+        "tags": ["TypeScript", "PostgreSQL", "Testing"],
     },
     "atomic-craft-ui": {
         "name": "Atomic Craft UI",
-        "desc": "原子化 UI 组件库",
+        "desc": "Atomic UI component library",
         "icon": "🎨",
         "tags": ["TypeScript", "React", "Design System"],
     },
     "arksu": {
         "name": "Arksu",
-        "desc": "近期活跃项目",
+        "desc": "Recently active project",
         "icon": "🚀",
         "tags": ["TypeScript"],
     },
-    # 个人项目
     "lovable-life-hub": {
         "name": "LifeOS",
-        "desc": "事件驱动个人生活智能管理系统 · LLM 编排 · Google Calendar / Notion 集成",
+        "desc": "Event-driven personal OS — LLM-orchestrated workflows, Google Calendar / Notion integration",
         "icon": "🧠",
         "tags": ["TypeScript", "React", "Supabase", "LLM"],
     },
     "my-digital-twin": {
         "name": "Digital Twin",
-        "desc": "交互式数字作品集 · D3.js 力导向技能图谱 · Framer Motion",
+        "desc": "Interactive portfolio — D3.js force-directed skill graph, i18n, Supabase",
         "icon": "🌐",
         "tags": ["TypeScript", "React", "D3.js"],
     },
     "mygithubprojectagent": {
         "name": "GitHub RAG Agent",
-        "desc": "GitHub 仓库 RAG 智能问答代理 · 自动脱敏 · 项目报告生成",
+        "desc": "RAG agent for private repo Q&A with automatic sensitive-data sanitization",
         "icon": "🤖",
         "tags": ["Python", "RAG", "LLM"],
     },
     "obs-averivendell": {
         "name": "Obsidian Second Brain",
-        "desc": "Claude Code + Obsidian 第二大脑套件（Claudesidian 定制分支）",
+        "desc": "Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access)",
         "icon": "📓",
         "tags": ["Obsidian", "Claude Code", "MCP"],
     },
@@ -147,7 +146,7 @@ def format_project_section(repos):
         repo = find_latest_in_series(repos, keyword)
         if not repo:
             continue
-        desc = (repo.get("description") or meta["desc"]).replace("|", "·")
+        desc = meta["desc"]
         lang = ""
         if repo.get("primaryLanguage"):
             lang = repo["primaryLanguage"].get("name", "")
@@ -167,7 +166,7 @@ def format_project_section(repos):
         repo = find_latest_in_series(repos, keyword)
         if not repo:
             continue
-        desc = (repo.get("description") or meta["desc"]).replace("|", "·")
+        desc = meta["desc"]
         lang = ""
         if repo.get("primaryLanguage"):
             lang = repo["primaryLanguage"].get("name", "")

@@ -148,9 +148,9 @@ def summarize_with_claude(repo_name, info, commits):
             messages=[{
                 "role": "user",
                 "content": (
-                    f"项目名：{info['name']}\n"
-                    f"本周 commits（{len(commits)} 条）：\n{commit_text}\n\n"
-                    "用一句中文概括本周主要进展（15-30字），只输出这一句话。"
+                    f"Project: {info['name']}\n"
+                    f"This week's commits ({len(commits)} total):\n{commit_text}\n\n"
+                    "Summarize the main progress this week in one English sentence (15-30 words). Output only that sentence."
                 )
             }]
         )
@@ -166,11 +166,11 @@ def format_project_block(info, commits, ai_summary):
     if ai_summary:
         lines.append(f"> {ai_summary}")
         lines.append("")
-    lines.append(f"**本周 {len(commits)} 条提交：**")
+    lines.append(f"**{len(commits)} commit{'s' if len(commits) != 1 else ''} this week:**")
     for c in commits[:8]:
         lines.append(f"- `{c}`")
     if len(commits) > 8:
-        lines.append(f"- *...另有 {len(commits) - 8} 条提交*")
+        lines.append(f"- *...and {len(commits) - 8} more*")
     lines.append("")
     return "\n".join(lines)
 
@@ -185,29 +185,29 @@ def generate_weekly_report(week_id, week_range, project_data):
     personal_active = [(r, d) for r, d in active if TRACKED_REPOS[r]["type"] == "personal"]
 
     lines = [
-        f"# 周报 {week_id}",
+        f"# Weekly Report {week_id}",
         f"",
         f"> {start} ~ {end}  ",
-        f"> 活跃项目 **{len(active)}** 个（工作 {len(work_active)} · 个人 {len(personal_active)}）/ 追踪中 {len(project_data)} 个",
+        f"> **{len(active)}** active project{'s' if len(active) != 1 else ''} (work: {len(work_active)} · personal: {len(personal_active)}) / {len(project_data)} tracked",
         f"",
         f"---",
         f"",
     ]
 
     if work_active:
-        lines.append("## 工作项目")
+        lines.append("## Work")
         lines.append("")
         for _, d in work_active:
             lines.append(d["block"])
 
     if personal_active:
-        lines.append("## 个人项目")
+        lines.append("## Personal")
         lines.append("")
         for _, d in personal_active:
             lines.append(d["block"])
 
     if inactive:
-        lines.append("## 本周无更新")
+        lines.append("## No updates this week")
         lines.append("")
         for repo, _ in inactive:
             info = TRACKED_REPOS[repo]

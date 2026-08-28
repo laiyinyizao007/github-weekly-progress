@@ -90,7 +90,7 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 ## 🏆 Trophies
 
 <div align="center">
-<img src="https://github-profile-trophy.vercel.app/?username=laiyinyizao007&theme=darkhub&no-frame=true&column=7&margin-w=4" />
+<img src="https://github-profile-trophy.vercel.app/?username=laiyinyizao007&theme=darkhub&no-frame=true&column=6&margin-w=8" />
 </div>
 
 ---
@@ -98,13 +98,15 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 ## 📊 Stats
 
 <div align="center">
-<img height="150" src="https://github-readme-stats.vercel.app/api?username=laiyinyizao007&show_icons=true&theme=github_dark&hide_border=true&count_private=true&include_all_commits=true" />
-<img height="150" src="https://github-readme-stats.vercel.app/api/top-langs/?username=laiyinyizao007&layout=compact&theme=github_dark&hide_border=true&langs_count=6" />
-<img height="150" src="https://streak-stats.demolab.com/?user=laiyinyizao007&theme=github-dark-blue&hide_border=true" />
+<table><tr>
+<td><img height="155" src="https://github-readme-stats.vercel.app/api?username=laiyinyizao007&show_icons=true&theme=github_dark&hide_border=true&count_private=true&include_all_commits=true" /></td>
+<td><img height="155" src="https://github-readme-stats.vercel.app/api/top-langs/?username=laiyinyizao007&layout=compact&theme=github_dark&hide_border=true&langs_count=6" /></td>
+<td><img height="155" src="https://streak-stats.demolab.com/?user=laiyinyizao007&theme=github-dark-blue&hide_border=true" /></td>
+</tr></table>
 </div>
 
 <div align="center">
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=laiyinyizao007&theme=github-compact&hide_border=true&area=true" />
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=laiyinyizao007&theme=react-dark&hide_border=true&area=true" />
 </div>
 
 ---

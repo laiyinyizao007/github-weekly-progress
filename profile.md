@@ -67,10 +67,10 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 | Project | Description | Stack |
 |---------|-------------|-------|
-| [🌿 **Green Compass**](https://github.com/laiyinyizao007/green-compass-net-f3505092) | 碳排放追踪与管理平台 | Carbon footprint monitoring platform (TypeScript) | `TypeScript · React · 可持续发展` |
-| [🏥 **Fidelity Craftsmen**](https://github.com/laiyinyizao007/fidelity-craftsmen-7dafda64) | AI 职业健康管理系统，基于 GBZ 188-2025 标准 | Occupational health management system | `TypeScript · AI · 健康管理` |
-| [🔗 **Pact Nexus Light**](https://github.com/laiyinyizao007/pact-nexus-light-3c5c9dae) | 轻量级合约测试框架 | Lightweight contract testing framework (TypeScript + PLpgSQL) | `PLpgSQL · TypeScript · PostgreSQL` |
-| [🎨 **Atomic Craft UI**](https://github.com/laiyinyizao007/atomic-craft-ui-89d5c7c7) | 原子化 UI 组件库 | Atomic UI component library (TypeScript) | `TypeScript · React · Design System` |
+| [🌿 **Green Compass**](https://github.com/laiyinyizao007/green-compass-net-f3505092) | 碳排放追踪与管理平台 · Carbon footprint monitoring platform (TypeScript) | `TypeScript · React · 可持续发展` |
+| [🏥 **Fidelity Craftsmen**](https://github.com/laiyinyizao007/fidelity-craftsmen-7dafda64) | AI 职业健康管理系统，基于 GBZ 188-2025 标准 · Occupational health management system | `TypeScript · AI · 健康管理` |
+| [🔗 **Pact Nexus Light**](https://github.com/laiyinyizao007/pact-nexus-light-3c5c9dae) | 轻量级合约测试框架 · Lightweight contract testing framework (TypeScript + PLpgSQL) | `PLpgSQL · TypeScript · PostgreSQL` |
+| [🎨 **Atomic Craft UI**](https://github.com/laiyinyizao007/atomic-craft-ui-89d5c7c7) | 原子化 UI 组件库 · Atomic UI component library (TypeScript) | `TypeScript · React · Design System` |
 | [🚀 **Arksu**](https://github.com/laiyinyizao007/arksusdemo) | AI-powered occupational health management system demo, compliant with GBZ 188-2025. | `TypeScript` |
 
 **Personal**
@@ -106,4 +106,4 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 ---
 
-*Last updated: <!-- LAST_UPDATED -->2026-08-28 08:42 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*
+*Last updated: <!-- LAST_UPDATED -->2026-08-28 09:05 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*

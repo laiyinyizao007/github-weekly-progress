@@ -147,7 +147,7 @@ def format_project_section(repos):
         repo = find_latest_in_series(repos, keyword)
         if not repo:
             continue
-        desc = repo.get("description") or meta["desc"]
+        desc = (repo.get("description") or meta["desc"]).replace("|", "·")
         lang = ""
         if repo.get("primaryLanguage"):
             lang = repo["primaryLanguage"].get("name", "")
@@ -167,7 +167,7 @@ def format_project_section(repos):
         repo = find_latest_in_series(repos, keyword)
         if not repo:
             continue
-        desc = repo.get("description") or meta["desc"]
+        desc = (repo.get("description") or meta["desc"]).replace("|", "·")
         lang = ""
         if repo.get("primaryLanguage"):
             lang = repo["primaryLanguage"].get("name", "")

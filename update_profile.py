@@ -213,7 +213,7 @@ def update_profile(content_block):
 
     # 替换时间戳
     now_str = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    text = re.sub(r"<!-- LAST_UPDATED -->.*", f"<!-- LAST_UPDATED -->{now_str}", text)
+    text = re.sub(r"<!-- LAST_UPDATED -->[^·]*", f"<!-- LAST_UPDATED -->{now_str} ", text)
 
     # 替换项目区块
     pattern = r"<!-- GITHUB_PROJECTS_START -->.*?<!-- GITHUB_PROJECTS_END -->"

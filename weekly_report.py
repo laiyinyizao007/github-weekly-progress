@@ -223,7 +223,7 @@ def build_profile_snippet(week_id, week_range, project_data):
     active = [(r, d) for r, d in project_data.items() if d["commits"]]
 
     lines = [
-        f"*周报 {week_id}（{start} ~ {end}）· {len(active)} 个项目有更新*",
+        f"*Week {week_id} ({start} → {end}) · {len(active)} project{'s' if len(active) != 1 else ''} updated*",
         "",
     ]
     for repo, data in active:
@@ -231,12 +231,12 @@ def build_profile_snippet(week_id, week_range, project_data):
         if data["ai_summary"]:
             lines.append(f"**{info['icon']} {info['name']}** — {data['ai_summary']}")
         else:
-            top = data["commits"][0] if data["commits"] else "有更新"
+            top = data["commits"][0] if data["commits"] else "updated"
             cnt = len(data["commits"])
-            lines.append(f"**{info['icon']} {info['name']}** — {top}（共 {cnt} 条提交）")
+            lines.append(f"**{info['icon']} {info['name']}** — {top} *({cnt} commits)*")
 
     lines.append("")
-    lines.append(f"📄 [完整周报 →](weekly-reports/{week_id}.md)")
+    lines.append(f"📄 [Full report →](weekly-reports/{week_id}.md)")
     return "\n".join(lines)
 
 

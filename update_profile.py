@@ -114,7 +114,7 @@ PERSONAL_SERIES_KEYS = ["lovable-life-hub", "my-digital-twin", "mygithubprojecta
 
 
 def format_one_project(repo, meta):
-    """格式化单个项目条目"""
+    """格式化单个项目条目（英文简洁风格）"""
     lang = ""
     if repo.get("primaryLanguage"):
         lang = repo["primaryLanguage"].get("name", "")
@@ -127,22 +127,19 @@ def format_one_project(repo, meta):
     pushed = repo.get("pushedAt", "")[:10]
 
     return [
-        f"### {meta['icon']} {meta['name']}",
-        f"**{desc}**",
-        f"- 最近更新：{pushed}",
-        f"- 技术栈：{' · '.join(tags)}",
-        f"- 仓库：`{repo['name']}`",
+        f"**{meta['icon']} [{meta['name']}](https://github.com/laiyinyizao007/{repo['name']})**"
+        f" — {desc}",
+        f"`{'` · `'.join(tags[:4])}` · *updated {pushed}*",
         "",
     ]
 
 
 def format_project_section(repos):
-    """生成 GitHub 项目 Markdown 段落（工作项目 + 个人项目分组）"""
-    lines = []
-    lines.append(f"*自动更新于 {datetime.now(timezone.utc).strftime('%Y-%m-%d')}（UTC）*\n")
+    """生成 GitHub 项目 Markdown 段落（英文，table 格式）"""
+    updated = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    # ── 工作项目 ──
-    work_lines = []
+    # ── Work ──
+    work_rows = []
     for keyword in WORK_SERIES_KEYS:
         meta = PROJECT_SERIES.get(keyword)
         if not meta:
@@ -150,14 +147,19 @@ def format_project_section(repos):
         repo = find_latest_in_series(repos, keyword)
         if not repo:
             continue
-        work_lines.extend(format_one_project(repo, meta))
+        desc = repo.get("description") or meta["desc"]
+        lang = ""
+        if repo.get("primaryLanguage"):
+            lang = repo["primaryLanguage"].get("name", "")
+        tags = list(meta["tags"])
+        if lang and lang not in tags:
+            tags = [lang] + tags
+        stack = " · ".join(tags[:3])
+        name_link = f"[{meta['icon']} **{meta['name']}**](https://github.com/laiyinyizao007/{repo['name']})"
+        work_rows.append(f"| {name_link} | {desc} | `{stack}` |")
 
-    if work_lines:
-        lines.append("#### 工作项目\n")
-        lines.extend(work_lines)
-
-    # ── 个人项目 ──
-    personal_lines = []
+    # ── Personal ──
+    personal_rows = []
     for keyword in PERSONAL_SERIES_KEYS:
         meta = PROJECT_SERIES.get(keyword)
         if not meta:
@@ -165,33 +167,41 @@ def format_project_section(repos):
         repo = find_latest_in_series(repos, keyword)
         if not repo:
             continue
-        personal_lines.extend(format_one_project(repo, meta))
+        desc = repo.get("description") or meta["desc"]
+        lang = ""
+        if repo.get("primaryLanguage"):
+            lang = repo["primaryLanguage"].get("name", "")
+        tags = list(meta["tags"])
+        if lang and lang not in tags:
+            tags = [lang] + tags
+        stack = " · ".join(tags[:3])
+        name_link = f"[{meta['icon']} **{meta['name']}**](https://github.com/laiyinyizao007/{repo['name']})"
+        personal_rows.append(f"| {name_link} | {desc} | `{stack}` |")
 
-    if personal_lines:
-        lines.append("#### 个人项目\n")
-        lines.extend(personal_lines)
+    lines = []
+    header = "| Project | Description | Stack |"
+    divider = "|---------|-------------|-------|"
 
-    if not work_lines and not personal_lines:
-        lines.append("*暂无匹配项目*")
-
-    # 近期新增的其他活跃仓库（非系列，最近 30 天有推送）
-    series_keywords = list(PROJECT_SERIES.keys())
-    recent_cutoff = datetime.now(timezone.utc).strftime("%Y-%m")
-    others = [
-        r for r in repos[:20]
-        if not any(kw in r["name"].lower() for kw in series_keywords)
-        and r.get("pushedAt", "")[:7] >= recent_cutoff
-    ]
-    if others:
-        lines.append("### 🆕 近期新增")
-        for r in others[:5]:
-            desc = r.get("description") or "—"
-            pushed = r.get("pushedAt", "")[:10]
-            lang = ""
-            if r.get("primaryLanguage"):
-                lang = r["primaryLanguage"].get("name", "")
-            lines.append(f"- **{r['name']}**：{desc}（{lang}，{pushed}）")
+    if work_rows:
+        lines.append("**Work**")
         lines.append("")
+        lines.append(header)
+        lines.append(divider)
+        lines.extend(work_rows)
+        lines.append("")
+
+    if personal_rows:
+        lines.append("**Personal**")
+        lines.append("")
+        lines.append(header)
+        lines.append(divider)
+        lines.extend(personal_rows)
+        lines.append("")
+
+    if not work_rows and not personal_rows:
+        lines.append("*No matching projects found.*")
+
+    lines.append(f"*auto-updated {updated} UTC*")
 
     return "\n".join(lines)
 

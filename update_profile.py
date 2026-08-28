@@ -12,7 +12,7 @@ import base64
 from datetime import datetime, timezone
 from pathlib import Path
 
-PROFILE_PATH = "/home/averypi/Projects/jobsearch/githubsummary/profile.md"
+PROFILE_PATH = str(Path(__file__).parent / "profile.md")
 GITHUB_USER = "laiyinyizao007"
 
 NO_PUSH = "--no-push" in sys.argv

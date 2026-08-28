@@ -32,7 +32,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent / ".env")
 
 # ── 配置 ──────────────────────────────────────────────────────────────
-BASE_DIR     = Path("/home/averypi/Projects/jobsearch/githubsummary")
+BASE_DIR     = Path(__file__).parent
 PROFILE_PATH = BASE_DIR / "profile.md"
 CONFIG_PATH   = BASE_DIR / "tracked_config.json"
 CACHE_PATH    = BASE_DIR / "repo_cache.json"

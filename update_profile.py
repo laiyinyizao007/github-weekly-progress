@@ -7,10 +7,15 @@
 import subprocess
 import json
 import re
+import sys
+import base64
 from datetime import datetime, timezone
+from pathlib import Path
 
 PROFILE_PATH = "/home/averypi/Projects/jobsearch/githubsummary/profile.md"
 GITHUB_USER = "laiyinyizao007"
+
+NO_PUSH = "--no-push" in sys.argv
 
 # 按系列分类的关键词（用于识别主力项目）
 PROJECT_SERIES = {
@@ -215,6 +220,55 @@ def update_profile(content_block):
     print(f"✅ profile.md 已更新（{now_str}）")
 
 
+def git_push_profile():
+    """将 profile.md 变更 commit 并推送到 github-weekly-progress"""
+    base_dir = str(Path(PROFILE_PATH).parent)
+    cmds = [
+        ["git", "-C", base_dir, "add", "profile.md"],
+        ["git", "-C", base_dir, "commit", "-m",
+         f"chore: 更新项目展示 {datetime.now(timezone.utc).strftime('%Y-%m-%d')}"],
+        ["git", "-C", base_dir, "push"],
+    ]
+    for cmd in cmds:
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        if r.returncode != 0:
+            if "nothing to commit" in r.stdout + r.stderr:
+                print("   ℹ️  profile.md 无变更，跳过 commit")
+                return False
+            print(f"   ⚠️  git 操作失败：{r.stderr.strip()[:80]}")
+            return False
+    return True
+
+
+def sync_profile_readme():
+    """将 profile.md 内容同步到 GitHub 个人主页仓库（laiyinyizao007/laiyinyizao007）"""
+    profile_repo = f"/repos/{GITHUB_USER}/{GITHUB_USER}/contents/README.md"
+    content_b64 = base64.b64encode(
+        Path(PROFILE_PATH).read_text(encoding="utf-8").encode()
+    ).decode()
+
+    # 获取当前 README 的 SHA（更新已有文件必须提供）
+    r = subprocess.run(
+        ["gh", "api", profile_repo, "--jq", ".sha"],
+        capture_output=True, text=True,
+    )
+    sha = r.stdout.strip() if r.returncode == 0 else None
+
+    args = ["api", "--method", "PUT", profile_repo,
+            "-f", "message=chore: sync profile",
+            "-f", f"content={content_b64}"]
+    if sha:
+        args += ["-f", f"sha={sha}"]
+
+    r2 = subprocess.run(["gh"] + args, capture_output=True, text=True)
+    if r2.returncode == 0:
+        print(f"   ✅ 个人主页 README 已同步（{GITHUB_USER}/{GITHUB_USER}）")
+        return True
+    else:
+        print(f"   ⚠️  个人主页同步失败：{r2.stderr.strip()[:120]}")
+        return False
+
+
 def main():
     print("🔄 拉取 GitHub 仓库信息...")
     repos = get_active_repos()
@@ -225,6 +279,14 @@ def main():
     print(f"   找到 {len(repos)} 个活跃仓库")
     content = format_project_section(repos)
     update_profile(content)
+
+    if not NO_PUSH:
+        print("\n📤 推送并同步...")
+        pushed = git_push_profile()
+        if pushed:
+            sync_profile_readme()
+    else:
+        print("\nℹ️  跳过 git push（--no-push）")
 
 
 if __name__ == "__main__":

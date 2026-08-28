@@ -20,6 +20,7 @@ import json
 import os
 import re
 import sys
+import base64
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from dotenv import load_dotenv
@@ -31,26 +32,54 @@ load_dotenv(Path(__file__).parent / ".env")
 BASE_DIR    = Path("/home/averypi/Projects/jobsearch/githubsummary")
 REPORT_DIR  = BASE_DIR / "weekly-reports"
 PROFILE_PATH = BASE_DIR / "profile.md"
+CONFIG_PATH  = BASE_DIR / "tracked_config.json"
 GITHUB_USER = "laiyinyizao007"
 
-# 追踪的项目（精确仓库名 -> 展示信息）
-TRACKED_REPOS = {
-    # 工作项目
-    "green-compass-net-f3505092": {"name": "Green Compass",       "icon": "🌿", "type": "work"},
-    "fidelity-craftsmen-7dafda64": {"name": "Fidelity Craftsmen", "icon": "🏥", "type": "work"},
-    "pact-nexus-light-3c5c9dae":   {"name": "Pact Nexus Light",   "icon": "🔗", "type": "work"},
-    "atomic-craft-ui-89d5c7c7":    {"name": "Atomic Craft UI",    "icon": "🎨", "type": "work"},
-    "arksusdemo":                  {"name": "ArkSus Demo",         "icon": "🚀", "type": "work"},
-    # 个人项目
-    "lovable-life-hub":     {"name": "LifeOS",               "icon": "🧠", "type": "personal"},
-    "my-digital-twin":      {"name": "Digital Twin",          "icon": "🌐", "type": "personal"},
-    "mygithubprojectagent": {"name": "GitHub RAG Agent",      "icon": "🤖", "type": "personal"},
-    "obs-averivendell":     {"name": "Obsidian Second Brain", "icon": "📓", "type": "personal"},
-}
+
+def _load_tracked_repos_from_config():
+    """从 tracked_config.json 加载追踪仓库配置，失败时返回 None"""
+    if not CONFIG_PATH.exists():
+        return None
+    try:
+        with open(CONFIG_PATH, encoding="utf-8") as f:
+            cfg = json.load(f)
+        result = {
+            name: {
+                "name": info["name"],
+                "icon": info.get("icon", "📦"),
+                "type": info.get("type", "personal"),
+            }
+            for name, info in cfg.get("tracked_repos", {}).items()
+        }
+        return result if result else None
+    except Exception:
+        return None
+
+
+# 从 tracked_config.json 读取，配置不存在时为空（等待 repo_analyzer 首次发现后填充）
+TRACKED_REPOS = _load_tracked_repos_from_config() or {}
 # ──────────────────────────────────────────────────────────────────────
 
 DRY_RUN  = "--dry-run" in sys.argv
 NO_PUSH  = "--no-push" in sys.argv or DRY_RUN
+
+
+def run_auto_discovery():
+    """运行 repo_analyzer.py 自动发现新仓库、更新追踪配置并同步 GitHub 收藏"""
+    analyzer = BASE_DIR / "repo_analyzer.py"
+    if not analyzer.exists():
+        return False
+    r = subprocess.run(
+        [sys.executable, str(analyzer), "--skip-readme-gen"],
+        capture_output=True, text=True,
+    )
+    # 透传关键操作结果（新追踪仓库、收藏变更），过滤掉 analyzer 的详细进度输出
+    _PASSTHROUGH_KEYWORDS = ("🆕", "⭐", "✂️", "⚠️  以下追踪")
+    for line in r.stdout.splitlines():
+        stripped = line.strip()
+        if stripped and any(k in stripped for k in _PASSTHROUGH_KEYWORDS):
+            print(f"   {stripped}")
+    return r.returncode == 0
 
 
 def run_gh(args):
@@ -244,8 +273,51 @@ def git_push_reports(week_id):
     return True
 
 
+def sync_profile_readme(dry_run=False):
+    """将 profile.md 内容同步到 GitHub 个人主页仓库（laiyinyizao007/laiyinyizao007）"""
+    profile_repo = f"/repos/{GITHUB_USER}/{GITHUB_USER}/contents/README.md"
+    content_b64 = base64.b64encode(
+        PROFILE_PATH.read_text(encoding="utf-8").encode()
+    ).decode()
+
+    # 获取当前 README 的 SHA（更新已有文件必须提供）
+    r = subprocess.run(
+        ["gh", "api", profile_repo, "--jq", ".sha"],
+        capture_output=True, text=True,
+    )
+    sha = r.stdout.strip() if r.returncode == 0 else None
+
+    if dry_run:
+        print(f"   [dry-run] 同步个人主页 README（{GITHUB_USER}/{GITHUB_USER}）")
+        return True
+
+    args = ["api", "--method", "PUT", profile_repo,
+            "-f", "message=chore: sync profile",
+            "-f", f"content={content_b64}"]
+    if sha:
+        args += ["-f", f"sha={sha}"]
+
+    r2 = subprocess.run(["gh"] + args, capture_output=True, text=True)
+    if r2.returncode == 0:
+        print(f"   ✅ 个人主页 README 已同步（{GITHUB_USER}/{GITHUB_USER}）")
+        return True
+    else:
+        print(f"   ⚠️  个人主页同步失败：{r2.stderr.strip()[:120]}")
+        return False
+
+
 def main():
+    global TRACKED_REPOS
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
+
+    # 自动发现新仓库（在生成周报前先更新追踪配置）
+    if not DRY_RUN:
+        print("🔍 扫描新仓库...", end=" ", flush=True)
+        ok = run_auto_discovery()
+        print("✅ 完成" if ok else "⚠️  跳过（repo_analyzer.py 不存在或运行失败）")
+        # 重新加载配置，包含本次新发现的仓库
+        TRACKED_REPOS = _load_tracked_repos_from_config() or {}
+        print()
 
     now       = datetime.now(timezone.utc)
     week_id   = get_week_id(now)
@@ -286,10 +358,14 @@ def main():
         print(f"✅ profile.md 已更新（本周进展区块）")
 
     # 推送到 GitHub
-    if not NO_PUSH:
+    if DRY_RUN:
+        sync_profile_readme(dry_run=True)
+    elif not NO_PUSH:
         print("\n📤 推送到 GitHub...", end=" ", flush=True)
         ok = git_push_reports(week_id)
         print("✅ 完成" if ok else "⚠️  请手动 push")
+        if ok:
+            sync_profile_readme(dry_run=False)
     else:
         print("\nℹ️  跳过 git push（--no-push）")
 

@@ -1,0 +1,68 @@
+name: 每周 Profile 自动更新
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'   # 每周一 UTC 1:00（北京时间 9:00）
+  workflow_dispatch:        # 允许手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # 推送到当前仓库（github-weekly-progress）
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install anthropic python-dotenv
+
+      - name: 配置 gh CLI
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: 运行 repo_analyzer（增量分析 + 更新追踪配置）
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 repo_analyzer.py --skip-readme-gen
+
+      - name: 运行 update_profile（更新项目列表）
+        run: python3 update_profile.py --no-push
+
+      - name: 运行 weekly_report（生成周报 + 更新本周进展）
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 weekly_report.py --no-push
+
+      - name: Commit & Push 到 github-weekly-progress
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add weekly-reports/ profile.md tracked_config.json
+          git diff --staged --quiet \
+            || git commit -m "chore: 自动周报 $(date -u +%Y-W%V)"
+          git push
+
+      - name: 同步个人主页 README（laiyinyizao007/laiyinyizao007）
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_SYNC_TOKEN }}
+        run: |
+          sha=$(gh api /repos/laiyinyizao007/laiyinyizao007/contents/README.md \
+                --jq '.sha' 2>/dev/null || echo "")
+          content=$(base64 -w 0 profile.md)
+          if [ -n "$sha" ]; then
+            gh api --method PUT \
+              /repos/laiyinyizao007/laiyinyizao007/contents/README.md \
+              -f message="chore: sync profile" \
+              -f content="$content" \
+              -f sha="$sha"
+            echo "✅ 个人主页 README 已同步"
+          else
+            echo "⚠️  README.md 未找到或无权访问（检查 PROFILE_SYNC_TOKEN）"
+            exit 1
+          fi

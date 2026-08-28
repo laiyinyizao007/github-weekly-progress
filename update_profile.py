@@ -9,7 +9,7 @@ import json
 import re
 import sys
 import base64
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 PROFILE_PATH = str(Path(__file__).parent / "profile.md")
@@ -74,6 +74,20 @@ PROJECT_SERIES = {
         "tags": ["Obsidian", "Claude Code", "MCP"],
     },
 }
+
+LANG_COLORS = {
+    "TypeScript": ("3178C6", "typescript"),
+    "Python": ("3776AB", "python"),
+    "JavaScript": ("F7DF1E", "javascript"),
+    "Go": ("00ADD8", "go"),
+    "Rust": ("000000", "rust"),
+    "PLpgSQL": ("336791", "postgresql"),
+    "HTML": ("E34F26", "html5"),
+    "CSS": ("1572B6", "css3"),
+    "Shell": ("121011", "gnubash"),
+    "Dockerfile": ("2496ED", "docker"),
+}
+
 
 def run_gh(args):
     result = subprocess.run(
@@ -229,6 +243,68 @@ def update_profile(content_block):
     print(f"✅ profile.md 已更新（{now_str}）")
 
 
+def generate_stats_block(repos):
+    """Generate shields.io badge block from live GitHub API data."""
+    user_info = run_gh(["api", f"/users/{GITHUB_USER}", "--jq",
+        "[.public_repos, .followers] | @csv"])
+    public_repos, followers = 0, 0
+    if user_info:
+        parts = user_info.strip('"').split(",")
+        if len(parts) >= 2:
+            public_repos, followers = int(parts[0]), int(parts[1])
+
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=90)).strftime("%Y-%m-%d")
+    recent_active = sum(1 for r in repos if r.get("pushedAt", "")[:10] >= cutoff)
+
+    lang_counts = {}
+    for r in repos:
+        lang = r.get("primaryLanguage")
+        if lang and lang.get("name"):
+            name = lang["name"]
+            lang_counts[name] = lang_counts.get(name, 0) + 1
+    top_lang = max(lang_counts, key=lang_counts.get) if lang_counts else "TypeScript"
+    top_lang_color, top_lang_logo = LANG_COLORS.get(top_lang, ("58A6FF", ""))
+
+    badges = [
+        f"![](https://img.shields.io/badge/Repos-{public_repos}-58A6FF?style=flat-square&logo=github&logoColor=white)",
+        f"![](https://img.shields.io/badge/Followers-{followers}-orange?style=flat-square&logo=github&logoColor=white)",
+    ]
+    lang_label = top_lang.replace("+", "%2B").replace(" ", "_")
+    if top_lang_logo:
+        badges.append(f"![](https://img.shields.io/badge/Top__Lang-{lang_label}-{top_lang_color}?style=flat-square&logo={top_lang_logo}&logoColor=white)")
+    else:
+        badges.append(f"![](https://img.shields.io/badge/Top__Lang-{lang_label}-{top_lang_color}?style=flat-square)")
+    badges.append(f"![](https://img.shields.io/badge/Active__90d-{recent_active}_repos-3ECF8E?style=flat-square)")
+
+    updated = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    lines = [
+        '<div align="center">',
+        "",
+        "  ".join(badges),
+        "",
+        "</div>",
+        "",
+        f"*auto-updated {updated} UTC*",
+    ]
+    return "\n".join(lines)
+
+
+def update_stats_block(content_block):
+    """Replace the GITHUB_STATS_START/END block in profile.md."""
+    with open(PROFILE_PATH, "r", encoding="utf-8") as f:
+        text = f.read()
+    pattern = r"<!-- GITHUB_STATS_START -->.*?<!-- GITHUB_STATS_END -->"
+    replacement = (
+        f"<!-- GITHUB_STATS_START -->\n"
+        f"{content_block}\n"
+        f"<!-- GITHUB_STATS_END -->"
+    )
+    text = re.sub(pattern, replacement, text, flags=re.DOTALL)
+    with open(PROFILE_PATH, "w", encoding="utf-8") as f:
+        f.write(text)
+    print("✅ stats block updated")
+
+
 def git_push_profile():
     """将 profile.md 变更 commit 并推送到 github-weekly-progress"""
     base_dir = str(Path(PROFILE_PATH).parent)
@@ -288,6 +364,10 @@ def main():
     print(f"   找到 {len(repos)} 个活跃仓库")
     content = format_project_section(repos)
     update_profile(content)
+
+    print("📊 生成 stats badges...")
+    stats_content = generate_stats_block(repos)
+    update_stats_block(stats_content)
 
     if not NO_PUSH:
         print("\n📤 推送并同步...")

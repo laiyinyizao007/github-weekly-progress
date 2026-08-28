@@ -1,27 +1,13 @@
 # GitHub 仓库数据库
 
-> 最后更新：2026-08-28 07:33 UTC  
-> 共 **132** 个仓库 ｜ 追踪 **7** 个 ｜ 本次重新分析 **1** 个（131 个命中缓存）
+> 最后更新：2026-08-28 09:08 UTC  
+> 共 **119** 个仓库 ｜ 追踪 **8** 个 ｜ 本次重新分析 **5** 个（114 个命中缓存）
 
 ---
 
-## ⭐ 追踪中的项目（7 个）
+## ⭐ 追踪中的项目（8 个）
 
-### 📘 Green Compass Net F3505092 (`green-compass-net-f3505092`) *(缓存)*
-
-| 项目 | 值 |
-|------|-----|
-| 描述 | 碳排放追踪与管理平台 | Carbon footprint monitoring platform (TypeScript) |
-| 语言 | TypeScript |
-| Stars | 1 |
-| 质量评分 | 45 / 60 |
-| 活跃度 | 最近活跃（1 天前）|
-| README | ✅ |
-| 已在 profile.md | ✅ |
-| 处置建议 | 建议保留 |
-| 最近推送 | 2026-08-26 |
-
-### 📘 Atomic Craft Ui 89d5c7c7 (`atomic-craft-ui-89d5c7c7`) *(缓存)*
+### 🎨 Atomic Craft UI (`atomic-craft-ui-89d5c7c7`) *(本次更新)*
 
 | 项目 | 值 |
 |------|-----|
@@ -29,13 +15,41 @@
 | 语言 | TypeScript |
 | Stars | 1 |
 | 质量评分 | 45 / 60 |
-| 活跃度 | 最近活跃（2 天前）|
+| 活跃度 | 最近活跃（0 天前）|
 | README | ✅ |
 | 已在 profile.md | ✅ |
 | 处置建议 | 建议保留 |
-| 最近推送 | 2026-08-26 |
+| 最近推送 | 2026-08-28 |
 
-### 📘 Fidelity Craftsmen 7dafda64 (`fidelity-craftsmen-7dafda64`) *(缓存)*
+### 🌿 Green Compass (`green-compass-net-f3505092`) *(本次更新)*
+
+| 项目 | 值 |
+|------|-----|
+| 描述 | 碳排放追踪与管理平台 | Carbon footprint monitoring platform (TypeScript) |
+| 语言 | TypeScript |
+| Stars | 1 |
+| 质量评分 | 45 / 60 |
+| 活跃度 | 最近活跃（0 天前）|
+| README | ✅ |
+| 已在 profile.md | ✅ |
+| 处置建议 | 建议保留 |
+| 最近推送 | 2026-08-28 |
+
+### 🚀 Arksu (`arksusdemo`) *(本次更新)*
+
+| 项目 | 值 |
+|------|-----|
+| 描述 | AI-powered occupational health management system demo, compliant with GBZ 188-2025. |
+| 语言 | TypeScript |
+| Stars | 1 |
+| 质量评分 | 45 / 60 |
+| 活跃度 | 最近活跃（0 天前）|
+| README | ✅ |
+| 已在 profile.md | ✅ |
+| 处置建议 | 建议保留 |
+| 最近推送 | 2026-08-28 |
+
+### 🏥 Fidelity Craftsmen (`fidelity-craftsmen-7dafda64`) *(缓存)*
 
 | 项目 | 值 |
 |------|-----|
@@ -49,7 +63,7 @@
 | 处置建议 | 建议保留 |
 | 最近推送 | 2026-08-19 |
 
-### 📘 Lovable Life Hub (`lovable-life-hub`) *(缓存)*
+### 🧠 LifeOS (`lovable-life-hub`) *(缓存)*
 
 | 项目 | 值 |
 |------|-----|
@@ -57,13 +71,13 @@
 | 语言 | TypeScript |
 | Stars | 1 |
 | 质量评分 | 45 / 60 |
-| 活跃度 | 最近活跃（45 天前）|
+| 活跃度 | 最近活跃（46 天前）|
 | README | ✅ |
 | 已在 profile.md | ✅ |
 | 处置建议 | 建议保留 |
 | 最近推送 | 2026-07-13 |
 
-### 📘 My Digital Twin (`my-digital-twin`) *(缓存)*
+### 🌐 Digital Twin (`my-digital-twin`) *(缓存)*
 
 | 项目 | 值 |
 |------|-----|
@@ -77,7 +91,7 @@
 | 处置建议 | 建议保留 |
 | 最近推送 | 2026-03-06 |
 
-### 🐍 Mygithubprojectagent (`mygithubprojectagent`) *(缓存)*
+### 🤖 GitHub RAG Agent (`mygithubprojectagent`) *(缓存)*
 
 | 项目 | 值 |
 |------|-----|
@@ -91,7 +105,7 @@
 | 处置建议 | 建议保留 |
 | 最近推送 | 2026-03-06 |
 
-### ⚡ Obs Averivendell (`obs-averivendell`) *(缓存)*
+### 📓 Obsidian Second Brain (`obs-averivendell`) *(缓存)*
 
 | 项目 | 值 |
 |------|-----|
@@ -107,22 +121,33 @@
 
 ---
 
-## 📋 所有仓库（132 个，按质量分排序）
+## 📋 所有仓库（119 个，按质量分排序）
 
 | 仓库名 | 语言 | 质量分 | 活跃度 | Stars | README | Profile | 追踪 | 处置 | 最近推送 |
 |--------|------|--------|--------|-------|--------|---------|------|------|----------|
-| `green-compass-net-f3505092` | TypeScript | 45/60 | 最近活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-08-26 |
-| `atomic-craft-ui-89d5c7c7` | TypeScript | 45/60 | 最近活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-08-26 |
+| `atomic-craft-ui-89d5c7c7` | TypeScript | 45/60 | 最近活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-08-28 |
+| `green-compass-net-f3505092` | TypeScript | 45/60 | 最近活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-08-28 |
+| `arksusdemo` | TypeScript | 45/60 | 最近活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-08-28 |
 | `fidelity-craftsmen-7dafda64` | TypeScript | 45/60 | 最近活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-08-19 |
 | `lovable-life-hub` | TypeScript | 45/60 | 最近活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-07-13 |
 | `my-digital-twin` | TypeScript | 45/60 | 一般活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-03-06 |
 | `mygithubprojectagent` | Python | 45/60 | 一般活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-03-06 |
 | `obs-averivendell` | JavaScript | 45/60 | 一般活跃 | 1 | ✅ | ✅ | ⭐ | 建议保留 | 2026-03-03 |
-| `laiyinyizao007` | — | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-27 |
+| `laiyinyizao007` | — | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `github-weekly-progress` | Python | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `claude-code-skills` | Python | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `duplicati-range` | Shell | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `cc-on-lifeos` | Shell | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `openclaw-custom-api` | Shell | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `homeassistant-manager` | Python | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `wechat-ingest` | Python | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `claude-code-best-practices-research` | — | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `test-api` | Python | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `redroid-manager` | Python | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
+| `260131patent` | — | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-27 |
 | `awesome-claude-code-subagents` | Shell | 25/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-12 |
 | `pact-nexus-light-3c5c9dae` | PLpgSQL | 25/60 | 最近活跃 | 0 | ❌ | ✅ | — | 建议保留 | 2026-07-14 |
 | `gemp-web` | Python | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-05-13 |
-| `magna-carbon-dashboard` | Python | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-05-09 |
 | `cityvibe-audio-guide` | TypeScript | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-04-27 |
 | `remix-of-arksusoverall` | TypeScript | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-04-27 |
 | `arksus20260409-5f1a138b` | TypeScript | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-04-27 |
@@ -140,8 +165,6 @@
 | `averypiopenclaw` | Python | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-02-28 |
 | `racknerdVPN` | Shell | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-02-27 |
 | `civic-mind2` | TypeScript | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-02-12 |
-| `Civic-Mind-Emergent-AI-City-with-SecondMe` | TypeScript | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-02-12 |
-| `civic-mind` | TypeScript | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-02-12 |
 | `deployment-buddy` | TypeScript | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-02-11 |
 | `Antigravity-Manager` | Rust | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-01-30 |
 | `claude-code-best-practices` | Python | 25/60 | 一般活跃 | 0 | ✅ | — | — | 建议保留 | 2026-01-13 |
@@ -161,28 +184,14 @@
 | `MediaCrawler` | Python | 25/60 | 长期未维护 | 0 | ✅ | — | — | 建议保留 | 2025-07-07 |
 | `wechat-bot` | TypeScript | 25/60 | 长期未维护 | 0 | ✅ | — | — | 建议保留 | 2025-01-31 |
 | `SolidGPT` | Python | 25/60 | 长期未维护 | 0 | ✅ | — | — | 建议保留 | 2025-01-12 |
-| `arksusdemo` | TypeScript | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `claude-code-skills` | Python | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `duplicati-range` | Shell | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `cc-on-lifeos` | Shell | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `openclaw-custom-api` | Shell | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `homeassistant-manager` | Python | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `wechat-ingest` | Python | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `claude-code-best-practices-research` | — | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `test-api` | Python | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `redroid-manager` | Python | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-28 |
-| `260131patent` | — | 15/60 | 最近活跃 | 0 | ✅ | — | — | 建议保留 | 2026-08-27 |
+| `n8n-workflows-backup` [归档] | Shell | 15/60 | 最近活跃 | 0 | — | — | — | 建议保留 | 2026-08-28 |
+| `AIslave` [归档] | Python | 15/60 | 最近活跃 | 0 | — | — | — | 建议保留 | 2026-08-28 |
 | `averivendell-projects-batch` [归档] | — | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-12 |
-| `research-on-n8n-workflows` [归档] | — | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-11 |
-| `n8n-workflows-backup` [归档] | Shell | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-11 |
 | `averivendell-others` [归档] | Shell | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
 | `averivendell-telegram-AnotherAvery_bot` [归档] | JavaScript | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
 | `averivendell-vibe-coding` [归档] | JavaScript | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
 | `averivendell-api-connection-tester` [归档] | JavaScript | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
 | `notion-api-research` [归档] | JavaScript | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-08 |
-| `telegram-AIworkHorse` [归档] | JavaScript | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-08 |
-| `AIslaveStorage` [归档] | — | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-05 |
-| `AIslave` [归档] | Python | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-04 |
 | `darwinRules` [归档] | — | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-04 |
 | `cline-global-rules` [归档] | PowerShell | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-04 |
 | `chrono-wear-ai-publish` [归档] | TypeScript | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-10-23 |
@@ -194,22 +203,17 @@
 | `learning-development-workspace` [归档] | HTML | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-09-29 |
 | `mcp-integration-hub` [归档] | Python | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-09-29 |
 | `smart-wardrobe-ai-system` [归档] | HTML | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-09-29 |
-| `smart-wardrobe-ai` [归档] | — | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-09-29 |
 | `python-learning-tutorial` [归档] | — | 15/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-09-29 |
 | `wewe-rss` [归档] | TypeScript | 15/60 | 长期未维护 | 0 | — | — | — | 建议删除 | 2025-04-04 |
 | `unlocking-the-power-of-llms` [归档] | Shell | 15/60 | 长期未维护 | 0 | — | — | — | 建议保留 | 2023-05-11 |
 | `rhinotools` [归档] | Python | 15/60 | 长期未维护 | 0 | — | — | — | 建议保留 | 2018-01-17 |
 | `xv6-paging` [归档] | C | 15/60 | 长期未维护 | 0 | — | — | — | 建议保留 | 2016-06-04 |
+| `esp32-s3-sense-homeassistant-autodiary` | Python | 10/60 | 最近活跃 | 0 | ❌ | — | — | 建议保留 | 2026-08-28 |
 | `github-profile-manager` | Python | 10/60 | 最近活跃 | 0 | ❌ | — | — | 建议保留 | 2026-08-28 |
-| `github-weekly-progress` | Python | 10/60 | 最近活跃 | 0 | ❌ | — | — | 建议保留 | 2026-08-27 |
 | `ark-spotter-40c35482` | TypeScript | 10/60 | 最近活跃 | 0 | ❌ | — | — | 建议保留 | 2026-07-30 |
-| `carbon-platform-connect` | PLpgSQL | 10/60 | 最近活跃 | 0 | ❌ | — | — | 建议保留 | 2026-07-20 |
-| `carbon-compass` | PLpgSQL | 10/60 | 最近活跃 | 0 | ❌ | — | — | 建议保留 | 2026-07-19 |
 | `neng-tan-guidebook` | TypeScript | 10/60 | 最近活跃 | 0 | ❌ | — | — | 建议保留 | 2026-06-02 |
 | `260417jysczc` | — | 10/60 | 一般活跃 | 0 | ❌ | — | — | 建议保留 | 2026-04-17 |
 | `safeworkpermitPRD` | — | 10/60 | 一般活跃 | 0 | ❌ | — | — | 建议保留 | 2026-03-12 |
-| `Civic-Mind-Emergent-AI-City` | — | 10/60 | 一般活跃 | 0 | ❌ | — | — | 建议保留 | 2026-02-12 |
-| `esp32-s3-sense-homeassistant-autodiary` | Python | 10/60 | 一般活跃 | 0 | ❌ | — | — | 建议保留 | 2025-12-30 |
 | `avery-pixel-cv` | — | 10/60 | 一般活跃 | 0 | ❌ | — | — | 建议保留 | 2025-12-20 |
 | `autohappyclaude-private` | — | 10/60 | 一般活跃 | 0 | ❌ | — | — | 建议保留 | 2025-12-18 |
 | `xiao-esp32s3-sense` | C++ | 10/60 | 一般活跃 | 0 | ❌ | — | — | 建议保留 | 2025-12-09 |
@@ -227,8 +231,6 @@
 | `averivendell-cline-context-optimizer` [归档] | JavaScript | 10/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
 | `averivendell-backup-manager` [归档] | JavaScript | 10/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
 | `averivendell-wsl-vscode-diagnostics` [归档] | Shell | 10/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
-| `averivendell-notion-api-research` [归档] | — | 10/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
-| `averivendell-notion_AR_SecondBrain` [归档] | — | 10/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
 | `averivendell-mcp-install` [归档] | — | 10/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-09 |
 | `xv6-public` [归档] | C | 10/60 | 长期未维护 | 0 | — | — | — | 建议保留 | 2018-11-30 |
 | `HW2` [归档] | — | 10/60 | 长期未维护 | 0 | — | — | — | 建议保留 | 2018-11-29 |
@@ -236,7 +238,6 @@
 | `rivenDell-Memory` [归档] | PowerShell | 5/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-06 |
 | `rivenDell-Notion` [归档] | — | 5/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-05 |
 | `rivenDell-DarwinAgent` [归档] | Python | 5/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-05 |
-| `rivenDell-AIslave` [归档] | Python | 5/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-05 |
 | `sleepless-agent` [归档] | Python | 5/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-11-02 |
 | `laiyinyizao007.github.io` [归档] | TypeScript | 5/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-10-23 |
 | `wander-tale-guide` [归档] | TypeScript | 5/60 | 一般活跃 | 0 | — | — | — | 建议保留 | 2025-10-05 |

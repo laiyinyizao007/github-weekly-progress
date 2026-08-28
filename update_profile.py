@@ -152,23 +152,22 @@ def format_project_section(repos):
     updated = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     # ── Work ──
+    BASE_URL = "https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects"
+
     work_rows = []
     for keyword in WORK_SERIES_KEYS:
         meta = PROJECT_SERIES.get(keyword)
         if not meta:
             continue
         repo = find_latest_in_series(repos, keyword)
-        if not repo:
-            continue
         desc = meta["desc"]
-        lang = ""
-        if repo.get("primaryLanguage"):
-            lang = repo["primaryLanguage"].get("name", "")
         tags = list(meta["tags"])
-        if lang and lang not in tags:
-            tags = [lang] + tags
+        if repo and repo.get("primaryLanguage"):
+            lang = repo["primaryLanguage"].get("name", "")
+            if lang and lang not in tags:
+                tags = [lang] + tags
         stack = " · ".join(tags[:3])
-        name_link = f"**[{meta['icon']} {meta['name']}](https://github.com/laiyinyizao007/{repo['name']})**"
+        name_link = f"**[{meta['icon']} {meta['name']}]({BASE_URL}/{keyword}.md)**"
         work_rows.append(f"| {name_link} | {desc} | `{stack}` |")
 
     # ── Personal ──
@@ -178,17 +177,14 @@ def format_project_section(repos):
         if not meta:
             continue
         repo = find_latest_in_series(repos, keyword)
-        if not repo:
-            continue
         desc = meta["desc"]
-        lang = ""
-        if repo.get("primaryLanguage"):
-            lang = repo["primaryLanguage"].get("name", "")
         tags = list(meta["tags"])
-        if lang and lang not in tags:
-            tags = [lang] + tags
+        if repo and repo.get("primaryLanguage"):
+            lang = repo["primaryLanguage"].get("name", "")
+            if lang and lang not in tags:
+                tags = [lang] + tags
         stack = " · ".join(tags[:3])
-        name_link = f"**[{meta['icon']} {meta['name']}](https://github.com/laiyinyizao007/{repo['name']})**"
+        name_link = f"**[{meta['icon']} {meta['name']}]({BASE_URL}/{keyword}.md)**"
         personal_rows.append(f"| {name_link} | {desc} | `{stack}` |")
 
     lines = []

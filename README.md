@@ -9,7 +9,7 @@
 | 脚本 | 功能 |
 |------|------|
 | `weekly_report.py` | 每周生成追踪仓库的 commit 摘要，更新 `profile.md` 的"本周进展"区块 |
-| `update_profile.py` | 拉取最新仓库信息，更新 `profile.md` 的"项目展示"区块 |
+| `update_profile.py` | 拉取最新仓库信息，更新 `profile.md` 的"项目展示"和"数据概览"（shields.io 徽章）区块 |
 | `repo_analyzer.py` | 全量分析所有仓库，自动发现新项目，生成分类报告和求职优化建议 |
 | `tracked_config.json` | 追踪配置（由 `repo_analyzer.py` 自动生成和维护） |
 
@@ -124,15 +124,21 @@ python3 weekly_report.py --dry-run
 
 ---
 
-### `update_profile.py` — 项目展示更新
+### `update_profile.py` — 项目展示 + 数据概览更新
 
-**作用**：拉取最新仓库信息，更新 `profile.md` 中的"项目展示"区块（按系列关键词匹配）。
+**作用**：拉取最新仓库信息，同时更新 `profile.md` 中两个区块：
+
+- **项目展示**（`<!-- GITHUB_PROJECTS_START/END -->`）：按系列关键词匹配，生成 Work / Personal 分类表格
+- **数据概览**（`<!-- GITHUB_STATS_START/END -->`）：调用 GitHub API 获取公开仓库数、关注者数、最常用语言和近90天活跃仓库数，生成 shields.io 静态徽章（无外部渲染服务依赖，始终可加载）
 
 ```bash
 python3 update_profile.py
+
+# 只更新本地，不推送
+python3 update_profile.py --no-push
 ```
 
-> **推荐频率**：有新仓库部署或描述变更时手动运行。
+> **推荐频率**：有新仓库部署或描述变更时手动运行，或随周报一起跑。
 
 ---
 
@@ -200,8 +206,12 @@ python3 weekly_report.py --dry-run
 
 ```markdown
 <!-- GITHUB_PROJECTS_START -->
-（由 update_profile.py 自动填充）
+（由 update_profile.py 自动填充 — Work / Personal 项目表格）
 <!-- GITHUB_PROJECTS_END -->
+
+<!-- GITHUB_STATS_START -->
+（由 update_profile.py 自动填充 — shields.io 静态徽章：仓库数/关注者/Top语言/近90天活跃数）
+<!-- GITHUB_STATS_END -->
 
 <!-- WEEKLY_PROGRESS_START -->
 （由 weekly_report.py 自动填充）

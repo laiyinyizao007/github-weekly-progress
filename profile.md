@@ -67,17 +67,20 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 | Project | Description | Stack |
 |---------|-------------|-------|
-| **[🌿 Green Compass](https://github.com/laiyinyizao007/green-compass-net-f3505092)** | Carbon footprint tracking and management platform | `TypeScript · React · Sustainability` |
-| **[🚀 Arksu](https://github.com/laiyinyizao007/arksusdemo)** | Recently active project | `TypeScript` |
+| **[🌿 Green Compass](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/green-compass.md)** | Carbon footprint tracking and management platform | `TypeScript · React · Sustainability` |
+| **[🏥 Fidelity Craftsmen](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/fidelity-craftsmen.md)** | AI occupational health management SaaS (GBZ 188-2025 compliant) | `TypeScript · AI · Health` |
+| **[🔗 Pact Nexus Light](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/pact-nexus-light.md)** | Lightweight contract testing framework | `TypeScript · PostgreSQL · Testing` |
+| **[🎨 Atomic Craft UI](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/atomic-craft-ui.md)** | Atomic UI component library | `TypeScript · React · Design System` |
+| **[🚀 Arksu](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/arksu.md)** | Recently active project | `TypeScript` |
 
 **Personal**
 
 | Project | Description | Stack |
 |---------|-------------|-------|
-| **[🧠 LifeOS](https://github.com/laiyinyizao007/lovable-life-hub)** | Event-driven personal OS — LLM-orchestrated workflows, Google Calendar / Notion integration | `TypeScript · React · Supabase` |
-| **[🌐 Digital Twin](https://github.com/laiyinyizao007/my-digital-twin)** | Interactive portfolio — D3.js force-directed skill graph, i18n, Supabase | `TypeScript · React · D3.js` |
-| **[🤖 GitHub RAG Agent](https://github.com/laiyinyizao007/mygithubprojectagent)** | RAG agent for private repo Q&A with automatic sensitive-data sanitization | `Python · RAG · LLM` |
-| **[📓 Obsidian Second Brain](https://github.com/laiyinyizao007/obs-averivendell)** | Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access) | `JavaScript · Obsidian · Claude Code` |
+| **[🧠 LifeOS](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/lovable-life-hub.md)** | Event-driven personal OS — LLM-orchestrated workflows, Google Calendar / Notion integration | `TypeScript · React · Supabase` |
+| **[🌐 Digital Twin](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/my-digital-twin.md)** | Interactive portfolio — D3.js force-directed skill graph, i18n, Supabase | `TypeScript · React · D3.js` |
+| **[🤖 GitHub RAG Agent](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/mygithubprojectagent.md)** | RAG agent for private repo Q&A with automatic sensitive-data sanitization | `Python · RAG · LLM` |
+| **[📓 Obsidian Second Brain](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/obs-averivendell.md)** | Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access) | `JavaScript · Obsidian · Claude Code` |
 
 *auto-updated 2026-08-28 UTC*
 <!-- GITHUB_PROJECTS_END -->
@@ -108,4 +111,4 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 ---
 
-*Last updated: <!-- LAST_UPDATED -->2026-08-28 09:59 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*
+*Last updated: <!-- LAST_UPDATED -->2026-08-28 10:10 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*

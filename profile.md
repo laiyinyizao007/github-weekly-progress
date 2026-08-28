@@ -1,6 +1,6 @@
 # 个人简介
 
-> 最后更新：<!-- LAST_UPDATED -->2026-08-27 10:50 UTC
+> 最后更新：<!-- LAST_UPDATED -->2026-08-28 08:15 UTC
 
 ## 基本信息
 
@@ -190,70 +190,18 @@
 ### 本周进展
 
 <!-- WEEKLY_PROGRESS_START -->
-*周报 2026-W35（2026-08-24 ~ 2026-08-30）· 2 个项目有更新*
+*周报 2026-W35（2026-08-24 ~ 2026-08-30）· 0 个项目有更新*
 
-**📘 Green Compass Net F3505092** — 加固报告生成提示词，继续迭代项目功能开发。
-**📘 Atomic Craft Ui 89d5c7c7** — 完善后台管理和用户交互，优化UI界面，实现语音捕获功能，改进文案和流程体验。
 
 📄 [完整周报 →](weekly-reports/2026-W35.md)
 <!-- WEEKLY_PROGRESS_END -->
 
 <!-- GITHUB_PROJECTS_START -->
-*自动更新于 2026-08-27（UTC）*
+*自动更新于 2026-08-28（UTC）*
 
-#### 工作项目
-
-### 🌿 Green Compass
-**碳排放追踪与管理平台 | Carbon footprint monitoring platform**
-- 最近更新：2026-08-26
-- 技术栈：TypeScript · React · 可持续发展
-- 线上地址：[green-compass-net.lovable.app](https://green-compass-net.lovable.app)
-- 仓库：`green-compass-net-f3505092`
-
-### 🏥 Fidelity Craftsmen
-**AI 职业健康管理系统（五端架构）| GBZ 188-2025 Occupational Health System**
-- 最近更新：2026-08-19
-- 技术栈：TypeScript · AI · 健康管理
-- 五端：Web管理端 / 医生工作台 / 移动端APP / 智能问诊 / 数据大屏
-- 仓库：`fidelity-craftsmen-7dafda64`
-
-### 🔗 Pact Nexus Light
-**轻量级合约测试框架 | Lightweight contract testing framework**
-- 最近更新：2026-07-14
-- 技术栈：PLpgSQL · TypeScript · PostgreSQL · 测试框架
-- 仓库：`pact-nexus-light-3c5c9dae`
-
-### 🎨 Atomic Craft UI
-**原子化 UI 组件库 | Atomic UI component library**
-- 最近更新：2026-08-26
-- 技术栈：TypeScript · React · Design System
-- 仓库：`atomic-craft-ui-89d5c7c7`
-
-#### 个人项目
-
-### 🧠 LifeOS
-**事件驱动个人生活智能管理系统 | LLM-orchestrated personal OS**
-- 最近更新：2026-08-27
-- 技术栈：TypeScript · React · Supabase · LLM · Google Calendar · Notion
-- 仓库：`lovable-life-hub`
-
-### 🌐 Digital Twin
-**交互式数字作品集 · D3.js 技能图谱 | Interactive portfolio**
-- 最近更新：2026-08-27
-- 技术栈：TypeScript · React · D3.js · Framer Motion · i18n
-- 仓库：`my-digital-twin`
-
-### 🤖 GitHub RAG Agent
-**仓库智能问答代理 | GitHub repo RAG Q&A agent**
-- 最近更新：2026-08-27
-- 技术栈：Python · RAG · LLM · GitHub API
-- 仓库：`mygithubprojectagent`
-
-### 📓 Obsidian Second Brain
-**Claude Code + Obsidian 知识管理套件 | AI-powered second brain**
-- 最近更新：2026-08-24
-- 技术栈：Obsidian · Claude Code · MCP
-- 仓库：`obs-averivendell`
+*暂无匹配项目*
+### 🆕 近期新增
+- **github-weekly-progress**：Weekly GitHub project progress reports（Python，2026-08-28）
 
 <!-- GITHUB_PROJECTS_END -->
 

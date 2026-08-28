@@ -49,7 +49,10 @@ The pivot made sense, actually — both disciplines are just obsessing over stru
 ## 🚀 This week
 
 <!-- WEEKLY_PROGRESS_START -->
-*(auto-updated every Sunday)*
+*Week 2026-W35 (2026-08-24 → 2026-08-30) · 0 projects updated*
+
+
+📄 [Full report →](weekly-reports/2026-W35.md)
 <!-- WEEKLY_PROGRESS_END -->
 
 ---
@@ -57,6 +60,8 @@ The pivot made sense, actually — both disciplines are just obsessing over stru
 ## 📦 Featured projects
 
 <!-- GITHUB_PROJECTS_START -->
+*No matching projects found.*
+*auto-updated 2026-08-28 UTC*
 <!-- GITHUB_PROJECTS_END -->
 
 ---
@@ -79,4 +84,4 @@ The pivot made sense, actually — both disciplines are just obsessing over stru
 
 ---
 
-*Last updated: <!-- LAST_UPDATED --> · [source](https://github.com/laiyinyizao007/github-weekly-progress)*
+*Last updated: <!-- LAST_UPDATED -->2026-08-28 08:27 UTC

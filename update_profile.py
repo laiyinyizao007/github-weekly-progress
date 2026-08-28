@@ -168,7 +168,7 @@ def format_project_section(repos):
         if lang and lang not in tags:
             tags = [lang] + tags
         stack = " · ".join(tags[:3])
-        name_link = f"[{meta['icon']} **{meta['name']}**](https://github.com/laiyinyizao007/{repo['name']})"
+        name_link = f"**[{meta['icon']} {meta['name']}](https://github.com/laiyinyizao007/{repo['name']})**"
         work_rows.append(f"| {name_link} | {desc} | `{stack}` |")
 
     # ── Personal ──
@@ -188,7 +188,7 @@ def format_project_section(repos):
         if lang and lang not in tags:
             tags = [lang] + tags
         stack = " · ".join(tags[:3])
-        name_link = f"[{meta['icon']} **{meta['name']}**](https://github.com/laiyinyizao007/{repo['name']})"
+        name_link = f"**[{meta['icon']} {meta['name']}](https://github.com/laiyinyizao007/{repo['name']})**"
         personal_rows.append(f"| {name_link} | {desc} | `{stack}` |")
 
     lines = []

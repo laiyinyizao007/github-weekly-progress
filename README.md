@@ -1,6 +1,6 @@
-# GitHub Summary — 求职项目追踪与周报系统
+# GitHub Summary — 项目追踪与周报系统
 
-自动追踪 GitHub 仓库活跃度，生成周报，并持续维护求职用的项目简介（`profile.md`）。
+自动追踪 GitHub 仓库活跃度，生成周报，并持续维护个人简介（`profile.md`）。
 
 ---
 
@@ -10,7 +10,7 @@
 |------|------|
 | `weekly_report.py` | 每周生成追踪仓库的 commit 摘要，更新 `profile.md` 的"本周进展"区块 |
 | `update_profile.py` | 拉取最新仓库信息，更新 `profile.md` 的"项目展示"和"数据概览"（shields.io 徽章）区块 |
-| `repo_analyzer.py` | 全量分析所有仓库，自动发现新项目，生成分类报告和求职优化建议 |
+| `repo_analyzer.py` | 全量分析所有仓库，自动发现新项目，生成分类报告和展示优化建议 |
 | `tracked_config.json` | 追踪配置（由 `repo_analyzer.py` 自动生成和维护） |
 
 ---
@@ -77,7 +77,7 @@ python3 repo_analyzer.py --no-auto-update --skip-readme-gen
 ```
 reports/
 ├── 2026-08-28-repo-analysis.md        # 全量分类报告 + 整理建议
-├── 2026-08-28-profile-suggestions.md  # 求职展示优化（哪些仓库值得放进简介）
+├── 2026-08-28-profile-suggestions.md  # 展示优化建议（哪些仓库值得放进简介）
 └── 2026-08-28-readme-drafts/
     └── some-repo.md                   # 缺少 README 的仓库草稿
 ```
@@ -232,7 +232,7 @@ python3 weekly_report.py --dry-run
 把它加入 `ignored_repos` 数组。
 
 **Q：Claude API 没配置，还能用吗？**
-可以。`weekly_report.py` 的 AI 摘要和 `repo_analyzer.py` 的 README 生成会跳过，其余功能（commits 统计、分类报告、求职建议）完全正常。
+可以。`weekly_report.py` 的 AI 摘要和 `repo_analyzer.py` 的 README 生成会跳过，其余功能（commits 统计、分类报告、展示建议）完全正常。
 
 **Q：不想推送到 GitHub 怎么办？**
 `weekly_report.py --no-push` 或 `--dry-run`。

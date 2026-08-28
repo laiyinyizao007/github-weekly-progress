@@ -68,9 +68,6 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 | Project | Description | Stack |
 |---------|-------------|-------|
 | [🌿 **Green Compass**](https://github.com/laiyinyizao007/green-compass-net-f3505092) | Carbon footprint tracking and management platform | `TypeScript · React · Sustainability` |
-| [🏥 **Fidelity Craftsmen**](https://github.com/laiyinyizao007/fidelity-craftsmen-7dafda64) | AI occupational health management SaaS (GBZ 188-2025 compliant) | `TypeScript · AI · Health` |
-| [🔗 **Pact Nexus Light**](https://github.com/laiyinyizao007/pact-nexus-light-3c5c9dae) | Lightweight contract testing framework | `PLpgSQL · TypeScript · PostgreSQL` |
-| [🎨 **Atomic Craft UI**](https://github.com/laiyinyizao007/atomic-craft-ui-89d5c7c7) | Atomic UI component library | `TypeScript · React · Design System` |
 | [🚀 **Arksu**](https://github.com/laiyinyizao007/arksusdemo) | Recently active project | `TypeScript` |
 
 **Personal**
@@ -87,27 +84,17 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 ---
 
-## 🏆 Trophies
+## 📊 At a glance
 
+<!-- GITHUB_STATS_START -->
 <div align="center">
-<img src="https://github-profile-trophy.vercel.app/?username=laiyinyizao007&theme=darkhub&no-frame=true&column=6&margin-w=8" />
+
+![](https://img.shields.io/badge/Repos-3-58A6FF?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Followers-1-orange?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Top__Lang-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)  ![](https://img.shields.io/badge/Active__90d-18_repos-3ECF8E?style=flat-square)
+
 </div>
 
----
-
-## 📊 Stats
-
-<div align="center">
-<table><tr>
-<td><img height="155" src="https://github-readme-stats.vercel.app/api?username=laiyinyizao007&show_icons=true&theme=github_dark&hide_border=true&count_private=true&include_all_commits=true" /></td>
-<td><img height="155" src="https://github-readme-stats.vercel.app/api/top-langs/?username=laiyinyizao007&layout=compact&theme=github_dark&hide_border=true&langs_count=6" /></td>
-<td><img height="155" src="https://streak-stats.demolab.com/?user=laiyinyizao007&theme=github-dark-blue&hide_border=true" /></td>
-</tr></table>
-</div>
-
-<div align="center">
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=laiyinyizao007&theme=react-dark&hide_border=true&area=true" />
-</div>
+*auto-updated 2026-08-28 UTC*
+<!-- GITHUB_STATS_END -->
 
 ---
 
@@ -121,4 +108,4 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 ---
 
-*Last updated: <!-- LAST_UPDATED -->2026-08-28 09:11 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*
+*Last updated: <!-- LAST_UPDATED -->2026-08-28 09:42 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*

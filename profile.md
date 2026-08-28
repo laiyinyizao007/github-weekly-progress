@@ -51,11 +51,11 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 <!-- WEEKLY_PROGRESS_START -->
 *Week 2026-W35 (2026-08-24 → 2026-08-30) · 3 projects updated*
 
-**📘 Green Compass Net F3505092** — 加强报告生成提示词工程，推进项目开发迭代。
-**📘 Atomic Craft Ui 89d5c7c7** — 完善后台管理界面，优化产品卡片和广告页UI，实现语音捕捉功能，改进用户交互流程。
-**📘 Arksusdemo** — 完成M5-B验证并推进至M5-C，输出阴影授权报告，实现T1数字孪生映射层。
+**🌿 Green Compass** — 优化了报告生成的提示词工程，持续推进项目迭代开发。
+**🎨 Atomic Craft UI** — 完善后台管理界面，优化产品展示UI，改进用户交互体验，增强语音功能和国际化支持。
+**🚀 Arksu** — 项目跨越M5多阶段验证，推进M0-M4确认，完成数字孪生映射，阴影授权体系逐步成熟。
 
-📄 [Full report →](weekly-reports/2026-W35.md)
+📄 [Full report →](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/weekly-reports/2026-W35.md)
 <!-- WEEKLY_PROGRESS_END -->
 
 ---

@@ -236,7 +236,7 @@ def build_profile_snippet(week_id, week_range, project_data):
             lines.append(f"**{info['icon']} {info['name']}** — {top} *({cnt} commits)*")
 
     lines.append("")
-    lines.append(f"📄 [Full report →](weekly-reports/{week_id}.md)")
+    lines.append(f"📄 [Full report →](https://github.com/{GITHUB_USER}/github-weekly-progress/blob/main/weekly-reports/{week_id}.md)")
     return "\n".join(lines)
 
 

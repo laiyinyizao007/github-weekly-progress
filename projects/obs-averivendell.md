@@ -1,5 +1,9 @@
 # 📓 Obsidian Second Brain
 
+<!-- PROJECT_META_START -->
+`JavaScript · Obsidian · Claude Code · MCP` · last push 2026-03-03 · *page updated 2026-08-28*
+<!-- PROJECT_META_END -->
+
 **Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access)**
 
 `Obsidian` · `Claude Code` · `MCP`
@@ -26,3 +30,9 @@ A starter kit for building a second brain in Obsidian, wired up with Claude Code
 | AI | Claude Code + MCP |
 | Version control | Git |
 | Automation | Shell scripts, cron |
+
+---
+
+<!-- RECENT_ACTIVITY_START -->
+*No recent activity recorded yet.*
+<!-- RECENT_ACTIVITY_END -->

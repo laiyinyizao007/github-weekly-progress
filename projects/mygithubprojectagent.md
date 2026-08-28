@@ -1,5 +1,9 @@
 # 🤖 GitHub RAG Agent
 
+<!-- PROJECT_META_START -->
+`Python · RAG · LLM` · last push 2026-03-06 · *page updated 2026-08-28*
+<!-- PROJECT_META_END -->
+
 **RAG agent for private repo Q&A with automatic sensitive-data sanitization**
 
 `Python` · `RAG` · `LLM`
@@ -27,3 +31,9 @@ GitHub RAG Agent is a retrieval-augmented generation system that lets you query 
 | Vector store | ChromaDB |
 | LLM | Claude API |
 | GitHub | PyGithub, gh CLI |
+
+---
+
+<!-- RECENT_ACTIVITY_START -->
+*No recent activity recorded yet.*
+<!-- RECENT_ACTIVITY_END -->

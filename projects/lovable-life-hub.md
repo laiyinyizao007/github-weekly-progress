@@ -1,5 +1,9 @@
 # 🧠 LifeOS
 
+<!-- PROJECT_META_START -->
+`TypeScript · React · Supabase · LLM` · last push 2026-07-13 · *page updated 2026-08-28*
+<!-- PROJECT_META_END -->
+
 **Event-driven personal OS — LLM-orchestrated workflows, Google Calendar / Notion integration**
 
 `TypeScript` · `React` · `Supabase` · `LLM`
@@ -26,3 +30,9 @@ LifeOS is a personal operating system that uses LLMs to orchestrate daily life w
 | Backend | Supabase (PostgreSQL + Edge Functions) |
 | AI | Claude API for intent parsing and workflow orchestration |
 | Integrations | Google Calendar API, Notion API |
+
+---
+
+<!-- RECENT_ACTIVITY_START -->
+*No recent activity recorded yet.*
+<!-- RECENT_ACTIVITY_END -->

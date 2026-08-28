@@ -1,5 +1,9 @@
 # 🏥 Fidelity Craftsmen
 
+<!-- PROJECT_META_START -->
+`TypeScript · AI · Health` · last push — · *page updated 2026-08-28*
+<!-- PROJECT_META_END -->
+
 **AI occupational health management SaaS (GBZ 188-2025 compliant)**
 
 `TypeScript` · `AI` · `Health`
@@ -26,3 +30,9 @@ Fidelity Craftsmen is an AI-driven occupational health management platform built
 | Backend | Node.js, PostgreSQL |
 | AI | Claude API for report drafting and risk analysis |
 | Infra | Docker, GitHub Actions |
+
+---
+
+<!-- RECENT_ACTIVITY_START -->
+*No recent activity recorded yet.*
+<!-- RECENT_ACTIVITY_END -->

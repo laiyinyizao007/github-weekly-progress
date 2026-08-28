@@ -256,10 +256,42 @@ def update_profile_md(snippet):
     PROFILE_PATH.write_text(text, encoding="utf-8")
 
 
+def update_project_page_activity(repo_name, info, week_id, commits, ai_summary):
+    """Update the RECENT_ACTIVITY_START/END block in the matching projects/*.md file."""
+    projects_dir = BASE_DIR / "projects"
+    if not projects_dir.exists():
+        return False
+    # Find the project page whose filename is a keyword contained in the repo name
+    matched_page = None
+    for page in projects_dir.glob("*.md"):
+        if page.stem in repo_name.lower():
+            matched_page = page
+            break
+    if not matched_page:
+        return False
+
+    commit_count = len(commits)
+    if ai_summary:
+        activity = f"**Week {week_id}** — {ai_summary} *({commit_count} commit{'s' if commit_count != 1 else ''})*"
+    elif commits:
+        activity = f"**Week {week_id}** — {commits[0]} *({commit_count} commit{'s' if commit_count != 1 else ''})*"
+    else:
+        return False  # No activity, leave block as is
+
+    text = matched_page.read_text(encoding="utf-8")
+    pattern = r"<!-- RECENT_ACTIVITY_START -->.*?<!-- RECENT_ACTIVITY_END -->"
+    replacement = f"<!-- RECENT_ACTIVITY_START -->\n{activity}\n<!-- RECENT_ACTIVITY_END -->"
+    new_text = re.sub(pattern, replacement, text, flags=re.DOTALL)
+    if new_text != text:
+        matched_page.write_text(new_text, encoding="utf-8")
+        return True
+    return False
+
+
 def git_push_reports(week_id):
     """将新周报 commit 并推送到 GitHub"""
     cmds = [
-        ["git", "-C", str(BASE_DIR), "add", "weekly-reports/", "profile.md"],
+        ["git", "-C", str(BASE_DIR), "add", "weekly-reports/", "profile.md", "projects/"],
         ["git", "-C", str(BASE_DIR), "commit", "-m",
          f"chore: 周报 {week_id}"],
         ["git", "-C", str(BASE_DIR), "push"],
@@ -356,6 +388,20 @@ def main():
     else:
         update_profile_md(snippet)
         print(f"✅ profile.md 已更新（本周进展区块）")
+
+    # 更新项目简介页活动记录
+    if not DRY_RUN:
+        updated_pages = []
+        for repo, data in project_data.items():
+            if data["commits"]:
+                ok = update_project_page_activity(
+                    repo, TRACKED_REPOS[repo], week_id,
+                    data["commits"], data["ai_summary"]
+                )
+                if ok:
+                    updated_pages.append(repo)
+        if updated_pages:
+            print(f"✅ 项目简介页活动更新：{len(updated_pages)} 个")
 
     # 推送到 GitHub
     if DRY_RUN:

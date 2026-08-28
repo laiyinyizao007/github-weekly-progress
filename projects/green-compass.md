@@ -1,5 +1,9 @@
 # 🌿 Green Compass
 
+<!-- PROJECT_META_START -->
+`TypeScript · React · Sustainability` · last push 2026-08-28 · *page updated 2026-08-28*
+<!-- PROJECT_META_END -->
+
 **Carbon footprint tracking and management platform**
 
 `TypeScript` · `React` · `Sustainability`
@@ -25,3 +29,9 @@ Green Compass is an AI-powered carbon footprint tracking and management platform
 | Backend | Node.js, PostgreSQL |
 | AI | Claude API for data extraction and report generation |
 | Infra | Docker, GitHub Actions |
+
+---
+
+<!-- RECENT_ACTIVITY_START -->
+*No recent activity recorded yet.*
+<!-- RECENT_ACTIVITY_END -->

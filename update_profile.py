@@ -285,6 +285,40 @@ def generate_stats_block(repos):
     return "\n".join(lines)
 
 
+def update_project_pages(repos):
+    """Update the PROJECT_META_START/END block in each projects/*.md file."""
+    projects_dir = Path(PROFILE_PATH).parent / "projects"
+    if not projects_dir.exists():
+        return
+    updated_count = 0
+    for keyword in list(WORK_SERIES_KEYS) + list(PERSONAL_SERIES_KEYS):
+        meta = PROJECT_SERIES.get(keyword)
+        if not meta:
+            continue
+        page = projects_dir / f"{keyword}.md"
+        if not page.exists():
+            continue
+        repo = find_latest_in_series(repos, keyword)
+        tags = list(meta["tags"])
+        if repo and repo.get("primaryLanguage"):
+            lang = repo["primaryLanguage"].get("name", "")
+            if lang and lang not in tags:
+                tags = [lang] + tags
+        stack = " · ".join(tags[:4])
+        pushed = repo.get("pushedAt", "")[:10] if repo else "—"
+        updated = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        meta_content = f"`{stack}` · last push {pushed} · *page updated {updated}*"
+
+        text = page.read_text(encoding="utf-8")
+        pattern = r"<!-- PROJECT_META_START -->.*?<!-- PROJECT_META_END -->"
+        replacement = f"<!-- PROJECT_META_START -->\n{meta_content}\n<!-- PROJECT_META_END -->"
+        new_text = re.sub(pattern, replacement, text, flags=re.DOTALL)
+        if new_text != text:
+            page.write_text(new_text, encoding="utf-8")
+            updated_count += 1
+    print(f"✅ project pages meta updated ({updated_count} files)")
+
+
 def update_stats_block(content_block):
     """Replace the GITHUB_STATS_START/END block in profile.md."""
     with open(PROFILE_PATH, "r", encoding="utf-8") as f:
@@ -364,6 +398,9 @@ def main():
     print("📊 生成 stats badges...")
     stats_content = generate_stats_block(repos)
     update_stats_block(stats_content)
+
+    print("📄 更新项目简介页 meta...")
+    update_project_pages(repos)
 
     if not NO_PUSH:
         print("\n📤 推送并同步...")

@@ -1,5 +1,9 @@
 # 🎨 Atomic Craft UI
 
+<!-- PROJECT_META_START -->
+`TypeScript · React · Design System` · last push — · *page updated 2026-08-28*
+<!-- PROJECT_META_END -->
+
 **Atomic UI component library**
 
 `TypeScript` · `React` · `Design System`
@@ -26,3 +30,9 @@ Atomic Craft UI is an internal React component library built on atomic design pr
 | Styling | Tailwind CSS, CSS Variables |
 | Docs | Storybook |
 | Build | Vite, tsup |
+
+---
+
+<!-- RECENT_ACTIVITY_START -->
+*No recent activity recorded yet.*
+<!-- RECENT_ACTIVITY_END -->

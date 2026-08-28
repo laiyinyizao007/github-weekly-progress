@@ -1,5 +1,9 @@
 # 🌐 Digital Twin
 
+<!-- PROJECT_META_START -->
+`TypeScript · React · D3.js` · last push 2026-03-06 · *page updated 2026-08-28*
+<!-- PROJECT_META_END -->
+
 **Interactive portfolio — D3.js force-directed skill graph, i18n, Supabase**
 
 `TypeScript` · `React` · `D3.js`
@@ -26,3 +30,9 @@ Digital Twin is an interactive personal portfolio that visualises skills and pro
 | Data | Supabase (PostgreSQL) |
 | i18n | react-i18next |
 | Build | Vite |
+
+---
+
+<!-- RECENT_ACTIVITY_START -->
+*No recent activity recorded yet.*
+<!-- RECENT_ACTIVITY_END -->

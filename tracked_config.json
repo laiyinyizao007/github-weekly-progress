@@ -1,0 +1,95 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-08-28",
+  "settings": {
+    "auto_add_threshold": 40,
+    "auto_remove_threshold": 25
+  },
+  "tracked_repos": {
+    "green-compass-net-f3505092": {
+      "name": "Green Compass Net F3505092",
+      "icon": "📘",
+      "type": "personal",
+      "added_date": "2026-08-28",
+      "score_history": [
+        {
+          "date": "2026-08-28",
+          "score": 45
+        }
+      ]
+    },
+    "atomic-craft-ui-89d5c7c7": {
+      "name": "Atomic Craft Ui 89d5c7c7",
+      "icon": "📘",
+      "type": "personal",
+      "added_date": "2026-08-28",
+      "score_history": [
+        {
+          "date": "2026-08-28",
+          "score": 45
+        }
+      ]
+    },
+    "fidelity-craftsmen-7dafda64": {
+      "name": "Fidelity Craftsmen 7dafda64",
+      "icon": "📘",
+      "type": "personal",
+      "added_date": "2026-08-28",
+      "score_history": [
+        {
+          "date": "2026-08-28",
+          "score": 45
+        }
+      ]
+    },
+    "lovable-life-hub": {
+      "name": "Lovable Life Hub",
+      "icon": "📘",
+      "type": "personal",
+      "added_date": "2026-08-28",
+      "score_history": [
+        {
+          "date": "2026-08-28",
+          "score": 45
+        }
+      ]
+    },
+    "my-digital-twin": {
+      "name": "My Digital Twin",
+      "icon": "📘",
+      "type": "personal",
+      "added_date": "2026-08-28",
+      "score_history": [
+        {
+          "date": "2026-08-28",
+          "score": 45
+        }
+      ]
+    },
+    "mygithubprojectagent": {
+      "name": "Mygithubprojectagent",
+      "icon": "🐍",
+      "type": "personal",
+      "added_date": "2026-08-28",
+      "score_history": [
+        {
+          "date": "2026-08-28",
+          "score": 45
+        }
+      ]
+    },
+    "obs-averivendell": {
+      "name": "Obs Averivendell",
+      "icon": "⚡",
+      "type": "personal",
+      "added_date": "2026-08-28",
+      "score_history": [
+        {
+          "date": "2026-08-28",
+          "score": 45
+        }
+      ]
+    }
+  },
+  "ignored_repos": []
+}

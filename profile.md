@@ -82,7 +82,7 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 | **[🤖 GitHub RAG Agent](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/mygithubprojectagent.md)** | RAG agent for private repo Q&A with automatic sensitive-data sanitization | `Python · RAG · LLM` |
 | **[📓 Obsidian Second Brain](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/obs-averivendell.md)** | Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access) | `JavaScript · Obsidian · Claude Code` |
 
-*auto-updated 2026-08-28 UTC*
+*auto-updated 2026-08-29 UTC*
 <!-- GITHUB_PROJECTS_END -->
 
 ---
@@ -92,11 +92,11 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 <!-- GITHUB_STATS_START -->
 <div align="center">
 
-![](https://img.shields.io/badge/Repos-3-58A6FF?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Followers-1-orange?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Top__Lang-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)  ![](https://img.shields.io/badge/Active__90d-18_repos-3ECF8E?style=flat-square)
+![](https://img.shields.io/badge/Repos-3-58A6FF?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Followers-1-orange?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Top__Lang-Python-3776AB?style=flat-square&logo=python&logoColor=white)  ![](https://img.shields.io/badge/Active__90d-23_repos-3ECF8E?style=flat-square)
 
 </div>
 
-*auto-updated 2026-08-28 UTC*
+*auto-updated 2026-08-29 UTC*
 <!-- GITHUB_STATS_END -->
 
 ---
@@ -111,4 +111,4 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 ---
 
-*Last updated: <!-- LAST_UPDATED -->2026-08-28 10:18 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*
+*Last updated: <!-- LAST_UPDATED -->2026-08-29 01:00 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*

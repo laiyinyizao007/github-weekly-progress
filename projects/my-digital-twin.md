@@ -1,7 +1,7 @@
 # 🌐 Digital Twin
 
 <!-- PROJECT_META_START -->
-`TypeScript · React · D3.js` · last push 2026-03-06 · *page updated 2026-08-28*
+`TypeScript · React · D3.js` · last push 2026-03-06 · *page updated 2026-08-29*
 <!-- PROJECT_META_END -->
 
 **Interactive portfolio — D3.js force-directed skill graph, i18n, Supabase**

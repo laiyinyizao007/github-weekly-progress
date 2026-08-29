@@ -51,9 +51,9 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 <!-- WEEKLY_PROGRESS_START -->
 *Week 2026-W35 (2026-08-24 → 2026-08-30) · 3 projects updated*
 
-**🌿 Green Compass** — The team documented the Magna carbon platform PRD, improved report generation prompts, and continued work in progress.
-**🎨 Atomic Craft UI** — Restructured core UI modules including account management, organization system, and role/team hierarchy while improving navigation and removing deprecated features.
-**🚀 Arksu** — Project Arksu advanced through multiple validation phases from M0 to M5, completing chemical data verification and digital twin mapping while addressing preflight checks.
+**🌿 Green Compass** — docs: import Magna carbon platform PRD and reference docs *(3 commits)*
+**🚀 Arksu** — feat(archive): add remix file health-utils.ts *(50 commits)*
+**🐍 Github Weekly Progress** — chore: 更新项目展示 2026-08-29 *(31 commits)*
 
 📄 [Full report →](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/weekly-reports/2026-W35.md)
 <!-- WEEKLY_PROGRESS_END -->

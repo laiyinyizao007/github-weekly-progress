@@ -1,7 +1,7 @@
 # 🌿 Green Compass
 
 <!-- PROJECT_META_START -->
-`TypeScript · React · Sustainability` · last push 2026-08-28 · *page updated 2026-08-28*
+`TypeScript · React · Sustainability` · last push — · *page updated 2026-08-29*
 <!-- PROJECT_META_END -->
 
 **Carbon footprint tracking and management platform**
@@ -33,5 +33,5 @@ Green Compass is an AI-powered carbon footprint tracking and management platform
 ---
 
 <!-- RECENT_ACTIVITY_START -->
-*No recent activity recorded yet.*
+**Week 2026-W35** — docs: import Magna carbon platform PRD and reference docs *(3 commits)*
 <!-- RECENT_ACTIVITY_END -->

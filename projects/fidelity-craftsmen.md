@@ -1,7 +1,7 @@
 # 🏥 Fidelity Craftsmen
 
 <!-- PROJECT_META_START -->
-`TypeScript · AI · Health` · last push — · *page updated 2026-08-28*
+`TypeScript · AI · Health` · last push — · *page updated 2026-08-29*
 <!-- PROJECT_META_END -->
 
 **AI occupational health management SaaS (GBZ 188-2025 compliant)**

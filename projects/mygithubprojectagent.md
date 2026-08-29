@@ -1,7 +1,7 @@
 # 🤖 GitHub RAG Agent
 
 <!-- PROJECT_META_START -->
-`Python · RAG · LLM` · last push 2026-03-06 · *page updated 2026-08-28*
+`Python · RAG · LLM` · last push 2026-03-06 · *page updated 2026-08-29*
 <!-- PROJECT_META_END -->
 
 **RAG agent for private repo Q&A with automatic sensitive-data sanitization**

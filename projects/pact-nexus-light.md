@@ -1,7 +1,7 @@
 # 🔗 Pact Nexus Light
 
 <!-- PROJECT_META_START -->
-`TypeScript · PostgreSQL · Testing` · last push — · *page updated 2026-08-28*
+`TypeScript · PostgreSQL · Testing` · last push — · *page updated 2026-08-29*
 <!-- PROJECT_META_END -->
 
 **Lightweight contract testing framework**

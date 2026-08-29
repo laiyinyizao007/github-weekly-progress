@@ -1,7 +1,7 @@
 # 📓 Obsidian Second Brain
 
 <!-- PROJECT_META_START -->
-`JavaScript · Obsidian · Claude Code · MCP` · last push 2026-03-03 · *page updated 2026-08-28*
+`JavaScript · Obsidian · Claude Code · MCP` · last push 2026-03-03 · *page updated 2026-08-29*
 <!-- PROJECT_META_END -->
 
 **Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access)**

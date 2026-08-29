@@ -1,7 +1,7 @@
 # 🧠 LifeOS
 
 <!-- PROJECT_META_START -->
-`TypeScript · React · Supabase · LLM` · last push 2026-07-13 · *page updated 2026-08-28*
+`TypeScript · React · Supabase · LLM` · last push 2026-07-13 · *page updated 2026-08-29*
 <!-- PROJECT_META_END -->
 
 **Event-driven personal OS — LLM-orchestrated workflows, Google Calendar / Notion integration**

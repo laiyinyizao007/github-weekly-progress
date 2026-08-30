@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "2026-08-28",
+  "last_updated": "2026-08-30",
   "settings": {
     "auto_add_threshold": 40,
     "auto_remove_threshold": 25
@@ -98,6 +98,18 @@
       "score_history": [
         {
           "date": "2026-08-28",
+          "score": 45
+        }
+      ]
+    },
+    "github-weekly-progress": {
+      "name": "Github Weekly Progress",
+      "icon": "🐍",
+      "type": "personal",
+      "added_date": "2026-08-30",
+      "score_history": [
+        {
+          "date": "2026-08-30",
           "score": 45
         }
       ]

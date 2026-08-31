@@ -1,0 +1,4 @@
+# 跳过 AI 更新描述的仓库（每行一个仓库名，不含用户名前缀）
+# 示例：
+# dotfiles
+# private-notes

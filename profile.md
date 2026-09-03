@@ -51,7 +51,7 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 <!-- WEEKLY_PROGRESS_START -->
 *Week 2026-W36 (2026-08-31 → 2026-09-06) · 1 project updated*
 
-**🐍 Github Weekly Progress** — debug: surface gh API errors in get_commits *(50 commits)*
+**🐍 Github Weekly Progress** — workflow: prefer GH_USER_TOKEN PAT over auto-injected GITHUB_TOKEN *(50 commits)*
 
 📄 [Full report →](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/weekly-reports/2026-W36.md)
 <!-- WEEKLY_PROGRESS_END -->
@@ -109,4 +109,4 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 ---
 
-*Last updated: <!-- LAST_UPDATED -->2026-09-03 15:28 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*
+*Last updated: <!-- LAST_UPDATED -->2026-09-03 15:32 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*

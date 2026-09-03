@@ -49,11 +49,11 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 ## 🚀 This week
 
 <!-- WEEKLY_PROGRESS_START -->
-*Week 2026-W35 (2026-08-24 → 2026-08-30) · 1 project updated*
+*Week 2026-W36 (2026-08-31 → 2026-09-06) · 1 project updated*
 
-**🐍 Github Weekly Progress** — chore: 周报 2026-W35 *(32 commits)*
+**🐍 Github Weekly Progress** — fix: rename my-digital-twin key, drop 404 repos *(50 commits)*
 
-📄 [Full report →](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/weekly-reports/2026-W35.md)
+📄 [Full report →](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/weekly-reports/2026-W36.md)
 <!-- WEEKLY_PROGRESS_END -->
 
 ---
@@ -80,7 +80,7 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 | **[🤖 GitHub RAG Agent](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/mygithubprojectagent.md)** | RAG agent for private repo Q&A with automatic sensitive-data sanitization | `Python · RAG · LLM` |
 | **[📓 Obsidian Second Brain](https://github.com/laiyinyizao007/github-weekly-progress/blob/main/projects/obs-averivendell.md)** | Claude Code + Obsidian second-brain starter kit (PARA, Git, mobile access) | `Obsidian · Claude Code · MCP` |
 
-*auto-updated 2026-08-30 UTC*
+*auto-updated 2026-09-03 UTC*
 <!-- GITHUB_PROJECTS_END -->
 
 ---
@@ -90,11 +90,11 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 <!-- GITHUB_STATS_START -->
 <div align="center">
 
-![](https://img.shields.io/badge/Repos-3-58A6FF?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Followers-1-orange?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Top__Lang-Python-3776AB?style=flat-square&logo=python&logoColor=white)  ![](https://img.shields.io/badge/Active__90d-1_repos-3ECF8E?style=flat-square)
+![](https://img.shields.io/badge/Repos-4-58A6FF?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Followers-1-orange?style=flat-square&logo=github&logoColor=white)  ![](https://img.shields.io/badge/Top__Lang-Python-3776AB?style=flat-square&logo=python&logoColor=white)  ![](https://img.shields.io/badge/Active__90d-1_repos-3ECF8E?style=flat-square)
 
 </div>
 
-*auto-updated 2026-08-30 UTC*
+*auto-updated 2026-09-03 UTC*
 <!-- GITHUB_STATS_END -->
 
 ---
@@ -109,4 +109,4 @@ Architecture taught constraint satisfaction. PM work taught product judgment. Th
 
 ---
 
-*Last updated: <!-- LAST_UPDATED -->2026-08-30 06:13 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*
+*Last updated: <!-- LAST_UPDATED -->2026-09-03 14:28 UTC · [source](https://github.com/laiyinyizao007/github-weekly-progress)*

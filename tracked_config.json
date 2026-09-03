@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "2026-08-30",
+  "last_updated": "2026-09-03",
   "settings": {
     "auto_add_threshold": 40,
     "auto_remove_threshold": 25
@@ -18,45 +18,9 @@
         }
       ]
     },
-    "atomic-craft-ui-89d5c7c7": {
-      "name": "Atomic Craft UI",
-      "icon": "🎨",
-      "type": "work",
-      "added_date": "2026-08-28",
-      "score_history": [
-        {
-          "date": "2026-08-28",
-          "score": 45
-        }
-      ]
-    },
-    "fidelity-craftsmen-7dafda64": {
-      "name": "Fidelity Craftsmen",
-      "icon": "🏥",
-      "type": "work",
-      "added_date": "2026-08-28",
-      "score_history": [
-        {
-          "date": "2026-08-28",
-          "score": 45
-        }
-      ]
-    },
     "lovable-life-hub": {
       "name": "LifeOS",
       "icon": "🧠",
-      "type": "personal",
-      "added_date": "2026-08-28",
-      "score_history": [
-        {
-          "date": "2026-08-28",
-          "score": 45
-        }
-      ]
-    },
-    "my-digital-twin": {
-      "name": "Digital Twin",
-      "icon": "🌐",
       "type": "personal",
       "added_date": "2026-08-28",
       "score_history": [
@@ -110,6 +74,18 @@
       "score_history": [
         {
           "date": "2026-08-30",
+          "score": 45
+        }
+      ]
+    },
+    "my-digital-twin-8cc5688b": {
+      "name": "Digital Twin",
+      "icon": "🌐",
+      "type": "personal",
+      "added_date": "2026-08-28",
+      "score_history": [
+        {
+          "date": "2026-08-28",
           "score": 45
         }
       ]

@@ -82,9 +82,14 @@ def run_auto_discovery():
     return r.returncode == 0
 
 
-def run_gh(args):
+def run_gh(args, debug=False):
     r = subprocess.run(["gh"] + args, capture_output=True, text=True)
-    return r.stdout.strip() if r.returncode == 0 else None
+    if r.returncode == 0:
+        return r.stdout.strip()
+    # Surface stderr so CI logs show why the call failed (rate limit, scope, etc.)
+    if debug or r.stderr.strip():
+        sys.stderr.write(f"[gh] {' '.join(args[:3])}... -> {r.returncode}: {r.stderr.strip()[:200]}\n")
+    return None
 
 
 def get_week_id(dt=None):
@@ -103,20 +108,22 @@ NOISE_PATTERNS = {
     "co-author:", "signed-off-by:",
 }
 
+# Fetch commits for one repo since `since_iso`. Returns [] on any failure.
+# Logs to stderr when the API call fails or returns empty so CI logs show why.
 def get_commits(repo_name, since_iso):
-    """获取仓库自 since_iso 以来的 commits（标题行，过滤噪音）"""
     out = run_gh([
         "api",
         f"/repos/{GITHUB_USER}/{repo_name}/commits?since={since_iso}&per_page=50",
         "--jq", '[.[].commit.message | split("\n")[0]]',
-    ])
+    ], debug=True)
     if not out:
+        sys.stderr.write(f"[gh] {repo_name}: empty response — likely GITHUB_TOKEN can't see this repo's commits\n")
         return []
     try:
         titles = json.loads(out)
     except json.JSONDecodeError:
         titles = [ln.strip() for ln in out.splitlines() if ln.strip()]
-    # 过滤空行和 Lovable/bot 自动生成的噪音 commit
+    # Filter empty lines and Lovable/bot auto-generated noise commits
     result = []
     for t in titles:
         t = t.strip()

@@ -14,11 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Prefer a user-level PAT (GH_USER_TOKEN) over the auto-injected
-          # GITHUB_TOKEN. The Actions token returns 404 on /commits against
-          # private repos it doesn't own, so weekly_report.py can't read the
-          # project history. A PAT with scope `repo` reads everything.
-          token: ${{ secrets.GH_USER_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:
@@ -28,9 +24,7 @@ jobs:
         run: pip install anthropic python-dotenv
 
       - name: 配置 gh CLI
-        env:
-          GH_AUTH_TOKEN: ${{ secrets.GH_USER_TOKEN || secrets.GITHUB_TOKEN }}
-        run: echo "$GH_AUTH_TOKEN" | gh auth login --with-token
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
       - name: 运行 repo_analyzer（增量分析 + 更新追踪配置）
         env:

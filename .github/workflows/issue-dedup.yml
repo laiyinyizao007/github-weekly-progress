@@ -1,0 +1,35 @@
+name: Issue Deduplication
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  dedup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Checkout scripts
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github/scripts
+          sparse-checkout-cone-mode: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run deduplication check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 .github/scripts/dedup.py

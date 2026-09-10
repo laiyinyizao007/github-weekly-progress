@@ -1,0 +1,144 @@
+name: Issue Task List Generator
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  generate-tasklist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    # Only run if:
+    # 1. Issue body has no existing task list
+    # 2. Title is meaningful (> 10 chars)
+    if: |
+      !contains(github.event.issue.body || '', '- [ ]') &&
+      github.event.issue.title != null &&
+      length(github.event.issue.title) > 10
+
+    steps:
+      - name: Generate task list from issue title
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 - << 'PYEOF'
+          import os
+          import re
+          import subprocess
+          import sys
+
+          title = os.environ.get('ISSUE_TITLE', '').strip()
+          body = os.environ.get('ISSUE_BODY', '') or ''
+          issue_num = os.environ['ISSUE_NUMBER']
+          repo = os.environ['REPO']
+
+          def generate_tasks(title):
+              """Generate task list based on issue title prefix using rule engine."""
+              title_lower = title.lower()
+
+              # Fix / Bug patterns
+              if re.match(r'^(fix|bug|hotfix|bugfix)[:\s]', title_lower):
+                  return [
+                      'Reproduce the bug reliably with a minimal test case',
+                      'Identify the root cause',
+                      'Implement the fix',
+                      'Write a regression test to prevent recurrence',
+                      'Verify the fix in a staging/test environment',
+                  ]
+
+              # Refactor patterns
+              if re.match(r'^(refactor|clean|cleanup|restructure)[:\s]', title_lower):
+                  return [
+                      'Analyze the current implementation',
+                      'Design the refactored structure',
+                      'Implement refactoring with no behavioral changes',
+                      'Ensure all existing tests still pass',
+                      'Update documentation if needed',
+                  ]
+
+              # Update / Upgrade patterns
+              if re.match(r'^(update|upgrade|bump|migrate)[:\s]', title_lower):
+                  return [
+                      'Review changelog and breaking changes',
+                      'Update dependencies / code',
+                      'Test compatibility',
+                      'Update documentation and migration guide if needed',
+                  ]
+
+              # Setup / Configure patterns
+              if re.match(r'^(setup|configure|config|install|init|initialize)[:\s]', title_lower):
+                  return [
+                      'Research requirements and best practices',
+                      'Implement the configuration',
+                      'Test the setup end-to-end',
+                      'Document the configuration steps',
+                  ]
+
+              # Add / Implement / Create patterns
+              if re.match(r'^(add|implement|create|build|develop|make)[:\s]', title_lower):
+                  return [
+                      'Design and document the interface / API',
+                      'Implement the core logic',
+                      'Write unit and integration tests',
+                      'Update documentation',
+                  ]
+
+              # Remove / Delete patterns
+              if re.match(r'^(remove|delete|drop|deprecate)[:\s]', title_lower):
+                  return [
+                      'Identify all usages and dependencies',
+                      'Implement removal with backward compatibility if needed',
+                      'Update tests and documentation',
+                      'Communicate the change if it affects users',
+                  ]
+
+              # Improve / Optimize / Performance patterns
+              if re.match(r'^(improve|optimize|performance|perf|speed)[:\s]', title_lower):
+                  return [
+                      'Profile and identify the bottleneck',
+                      'Design the optimization approach',
+                      'Implement the optimization',
+                      'Measure and verify improvement with benchmarks',
+                  ]
+
+              # Generic fallback
+              return [
+                  'Define acceptance criteria',
+                  'Implement the feature / fix',
+                  'Write tests',
+                  'Update documentation',
+                  'Code review',
+              ]
+
+          tasks = generate_tasks(title)
+
+          if not tasks:
+              print('Could not generate meaningful tasks. Skipping.')
+              sys.exit(0)
+
+          # Build task list markdown
+          tasklist = '## Task Breakdown\n\n'
+          for task in tasks:
+              tasklist += f'- [ ] {task}\n'
+
+          # Append to Issue body (preserve existing content)
+          new_body = body.rstrip() + '\n\n' + tasklist if body.strip() else tasklist
+
+          result = subprocess.run(
+              ['gh', 'issue', 'edit', issue_num, '--repo', repo, '--body', new_body],
+              capture_output=True, text=True
+          )
+
+          if result.returncode == 0:
+              print(f'Task list added to issue #{issue_num}')
+          else:
+              print(f'Warning: Failed to update issue: {result.stderr}', file=sys.stderr)
+              sys.exit(1)
+          PYEOF

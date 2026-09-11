@@ -1,60 +1,109 @@
 #!/usr/bin/env python3
-"""
-dedup.py - GitHub Issue Deduplication Script
+"""Duplicate Issue detection for GitHub Issues.
 
-Compares the title of a newly opened Issue against all existing open Issues
-using two similarity algorithms:
-  1. difflib.SequenceMatcher (character sequence similarity)
-  2. Jaccard coefficient on word sets (order-insensitive)
-
-If similarity >= threshold (default 0.6), labels the Issue as 'duplicate'
-and posts a comment listing the similar Issues.
-
-Environment variables required:
-  GH_TOKEN      - GitHub token (provided automatically by GitHub Actions)
-  ISSUE_NUMBER  - Number of the newly opened Issue
-  ISSUE_TITLE   - Title of the newly opened Issue
-  REPO          - Repository in "owner/repo" format
-
-Usage: python3 dedup.py
+Usage:
+    python dedup.py <issue_number> <issue_title> <repo> <gh_token>
 """
 
 import json
-import os
 import re
-import subprocess
 import sys
+import time
+import urllib.error
+import urllib.request
 from difflib import SequenceMatcher
 
-# --- Configuration ---
-SIMILARITY_THRESHOLD = 0.6  # Trigger if either algorithm scores >= this
-MAX_SIMILAR_TO_REPORT = 5   # Report at most this many similar Issues
+SIMILARITY_THRESHOLD = 0.6
+MAX_SIMILAR_TO_REPORT = 5
+MIN_MEANINGFUL_TOKENS = 2
 
-# Stop words to ignore in Jaccard comparison
+API_BASE = 'https://api.github.com'
+REQUEST_TIMEOUT = 30
+MAX_RETRIES = 3
+
+PREFIX_RE = re.compile(
+    r'^(feat|feature|fix|docs?|chore|refactor|test|tests|ci|cd|perf|build|style|revert)'
+    r'(\([^)]*\))?!?:\s*',
+    re.IGNORECASE,
+)
+
 STOP_WORDS = {
-    'the', 'a', 'an', 'is', 'in', 'of', 'for', 'to', 'with', 'and', 'or',
-    'but', 'not', 'be', 'are', 'was', 'were', 'has', 'have', 'had', 'do',
-    'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might',
-    'on', 'at', 'by', 'from', 'as', 'into', 'through', 'during', 'before',
-    'after', 'above', 'below', 'between', 'each', 'more', 'other',
+    'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
+    'of', 'with', 'by', 'from', 'is', 'are', 'was', 'be', 'has', 'have',
     'fix', 'fixes', 'fixed', 'add', 'adds', 'added', 'update', 'updates',
     'support', 'implement', 'when', 'that', 'this', 'it', 'if',
+    'feat', 'feature', 'docs', 'doc', 'chore', 'test', 'tests',
+    'refactor', 'ci', 'cd', 'perf', 'style',
 }
 
+# Errors that should never be retried — they won't resolve on their own.
+_NO_RETRY_CODES = {401, 403, 404, 422}
 
-def tokenize(text: str) -> set[str]:
-    """Extract meaningful words from text, filtering stop words."""
+
+def _build_request(url: str, token: str, data: bytes | None = None, method: str | None = None) -> urllib.request.Request:
+    req = urllib.request.Request(url, data=data, method=method or ('POST' if data else 'GET'))
+    req.add_header('Authorization', f'Bearer {token}')
+    req.add_header('Accept', 'application/vnd.github+json')
+    req.add_header('X-GitHub-Api-Version', '2022-11-28')
+    if data:
+        req.add_header('Content-Type', 'application/json')
+    return req
+
+
+def api_request(url: str, token: str, *, data: bytes | None = None, method: str | None = None) -> dict | list:
+    """Make a GitHub API request with timeout, exponential backoff, and error classification.
+
+    Raises on permanent errors (auth, not found).
+    Retries on transient errors (5xx, network) up to MAX_RETRIES times.
+    Respects Retry-After on 429.
+    """
+    last_exc: Exception | None = None
+
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            req = _build_request(url, token, data=data, method=method)
+            with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
+                return json.loads(resp.read())
+
+        except urllib.error.HTTPError as exc:
+            if exc.code in _NO_RETRY_CODES:
+                raise  # permanent — don't retry
+
+            if exc.code == 429:
+                wait = int(exc.headers.get('Retry-After', 60))
+                print(f'[rate-limit] 429 — waiting {wait}s before retry {attempt}/{MAX_RETRIES}')
+                time.sleep(wait)
+                last_exc = exc
+                continue
+
+            # 5xx or other transient HTTP errors
+            last_exc = exc
+
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            last_exc = exc
+
+        if attempt < MAX_RETRIES:
+            delay = 2 ** (attempt - 1)  # 1s, 2s, 4s
+            print(f'[retry] attempt {attempt}/{MAX_RETRIES} failed ({last_exc}), retrying in {delay}s...')
+            time.sleep(delay)
+
+    raise RuntimeError(f'API request failed after {MAX_RETRIES} attempts: {last_exc}') from last_exc
+
+
+def normalize_title(title: str) -> str:
+    return PREFIX_RE.sub('', title.strip()).strip()
+
+
+def tokenize(text: str) -> set:
     words = re.findall(r'[a-z0-9]+', text.lower())
     return {w for w in words if w not in STOP_WORDS and len(w) > 1}
 
 
 def sequence_similarity(a: str, b: str) -> float:
-    """Character-level sequence similarity using difflib."""
     return SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
 
 def jaccard_similarity(a: str, b: str) -> float:
-    """Word-set Jaccard similarity (order-insensitive)."""
     words_a = tokenize(a)
     words_b = tokenize(b)
     union = words_a | words_b
@@ -64,150 +113,115 @@ def jaccard_similarity(a: str, b: str) -> float:
 
 
 def combined_score(a: str, b: str) -> float:
-    """Combined score: max of sequence and Jaccard similarity."""
+    a = normalize_title(a)
+    b = normalize_title(b)
     return max(sequence_similarity(a, b), jaccard_similarity(a, b))
 
 
-def run_gh(*args: str) -> subprocess.CompletedProcess:
-    """Run a gh CLI command and return the result."""
-    env = os.environ.copy()
-    # GH_TOKEN is automatically picked up by gh CLI
-    return subprocess.run(
-        ['gh', *args],
-        capture_output=True,
-        text=True,
-        env=env,
-    )
+def get_open_issues(repo: str, exclude_number: int, token: str) -> list:
+    issues: list = []
+    page = 1
+    while True:
+        url = f'{API_BASE}/repos/{repo}/issues?state=open&per_page=100&page={page}'
+        try:
+            batch = api_request(url, token)
+        except Exception as exc:
+            # Partial failure: log and return whatever we've collected so far.
+            print(f'[warn] Failed to fetch page {page} of issues: {exc}. Using {len(issues)} issue(s) already fetched.')
+            break
+
+        if not batch:
+            break
+        for issue in batch:
+            if 'pull_request' in issue:
+                continue
+            if issue['number'] == exclude_number:
+                continue
+            issues.append(issue)
+        if len(batch) < 100:
+            break
+        page += 1
+    return issues
 
 
-def get_open_issues(repo: str, exclude_number: int) -> list[dict]:
-    """Fetch all open Issues from the repo, excluding the given Issue number."""
-    result = run_gh(
-        'issue', 'list',
-        '--repo', repo,
-        '--state', 'open',
-        '--limit', '200',
-        '--json', 'number,title',
-    )
-    if result.returncode != 0:
-        print(f'Failed to list issues: {result.stderr}', file=sys.stderr)
-        return []
-
+def post_comment(repo: str, issue_number: int, body: str, token: str) -> None:
+    url = f'{API_BASE}/repos/{repo}/issues/{issue_number}/comments'
+    data = json.dumps({'body': body}).encode()
     try:
-        issues = json.loads(result.stdout)
-    except json.JSONDecodeError:
-        print('Failed to parse issue list JSON', file=sys.stderr)
-        return []
-
-    return [i for i in issues if i['number'] != exclude_number]
-
-
-def create_label_if_missing(repo: str, name: str, color: str, description: str) -> None:
-    """Create a GitHub label idempotently (ignore if already exists)."""
-    run_gh(
-        'label', 'create', name,
-        '--repo', repo,
-        '--color', color,
-        '--description', description,
-        '--force',  # update if exists (gh >=2.x)
-    )
-
-
-def add_label(repo: str, issue_number: str, label: str) -> None:
-    """Add a label to an Issue."""
-    result = run_gh(
-        'issue', 'edit', issue_number,
-        '--repo', repo,
-        '--add-label', label,
-    )
-    if result.returncode != 0:
-        print(f'Warning: Failed to add label: {result.stderr}', file=sys.stderr)
-
-
-def post_comment(repo: str, issue_number: str, body: str) -> None:
-    """Post a comment on an Issue."""
-    result = run_gh(
-        'issue', 'comment', issue_number,
-        '--repo', repo,
-        '--body', body,
-    )
-    if result.returncode != 0:
-        print(f'Warning: Failed to post comment: {result.stderr}', file=sys.stderr)
+        api_request(url, token, data=data)
+        print('✅ Duplicate warning comment posted.')
+    except urllib.error.HTTPError as exc:
+        if exc.code in (401, 403):
+            print(f'[error] Authentication failed (HTTP {exc.code}). Check that GITHUB_TOKEN has issues:write permission.')
+        else:
+            print(f'[error] Failed to post comment (HTTP {exc.code}). Comment body follows for log retention:')
+            print(body)
+    except Exception as exc:
+        print(f'[error] Failed to post comment after {MAX_RETRIES} retries: {exc}. Comment body follows for log retention:')
+        print(body)
 
 
 def main() -> None:
-    # Read environment variables
-    issue_number = os.environ.get('ISSUE_NUMBER', '').strip()
-    issue_title = os.environ.get('ISSUE_TITLE', '').strip()
-    repo = os.environ.get('REPO', '').strip()
-
-    if not all([issue_number, issue_title, repo]):
-        print('Missing required environment variables', file=sys.stderr)
+    if len(sys.argv) != 5:
+        print(f'Usage: {sys.argv[0]} <issue_number> <issue_title> <repo> <gh_token>')
         sys.exit(1)
 
-    print(f'Checking issue #{issue_number}: "{issue_title}"')
-    print(f'Repository: {repo}')
-    print(f'Similarity threshold: {SIMILARITY_THRESHOLD}')
-    print()
+    issue_number = int(sys.argv[1])
+    issue_title = sys.argv[2]
+    repo = sys.argv[3]
+    token = sys.argv[4]
 
-    # Fetch existing open Issues
-    existing_issues = get_open_issues(repo, int(issue_number))
-    print(f'Comparing against {len(existing_issues)} open issues...')
+    try:
+        normalized = normalize_title(issue_title)
+        meaningful = tokenize(normalized)
+        if len(meaningful) < MIN_MEANINGFUL_TOKENS:
+            print(
+                f'Only {len(meaningful)} meaningful word(s) in "{normalized}". '
+                'Too short to compare — skipping.'
+            )
+            return
 
-    # Calculate similarity for each existing Issue
-    matches = []
-    for issue in existing_issues:
-        score = combined_score(issue_title, issue['title'])
-        if score >= SIMILARITY_THRESHOLD:
-            matches.append({
-                'number': issue['number'],
-                'title': issue['title'],
-                'score': score,
-            })
+        print(f'Checking for duplicates of: "{issue_title}" (normalized: "{normalized}")')
+        existing_issues = get_open_issues(repo, issue_number, token)
+        print(f'Comparing against {len(existing_issues)} open issue(s)...')
 
-    # Sort by score descending
-    matches.sort(key=lambda x: x['score'], reverse=True)
+        scored = []
+        for issue in existing_issues:
+            score = combined_score(issue_title, issue['title'])
+            if score >= SIMILARITY_THRESHOLD:
+                scored.append((score, issue))
 
-    if not matches:
-        print('No duplicate issues found.')
-        return
+        scored.sort(key=lambda x: x[0], reverse=True)
+        top = scored[:MAX_SIMILAR_TO_REPORT]
 
-    print(f'Found {len(matches)} potentially duplicate issue(s)!')
+        if not top:
+            print('No similar issues found.')
+            return
 
-    # Ensure 'duplicate' label exists
-    create_label_if_missing(
-        repo,
-        name='duplicate',
-        color='cfd3d7',
-        description='This issue or pull request already exists',
-    )
+        lines = [
+            '## ⚠️ 可能存在重复 Issue',
+            '',
+            f'以下 Issue 与本 Issue 标题高度相似（相似度阈值：{SIMILARITY_THRESHOLD:.0%}）：',
+            '',
+        ]
+        for score, issue in top:
+            lines.append(
+                f'- #{issue["number"]} [{issue["title"]}]({issue["html_url"]}) '
+                f'— 相似度 {score:.0%}'
+            )
+        lines += [
+            '',
+            '> 如果这不是重复 Issue，请忽略此提示。',
+        ]
+        body = '\n'.join(lines)
 
-    # Add label to new Issue
-    add_label(repo, issue_number, 'duplicate')
-    print(f'Added "duplicate" label to issue #{issue_number}')
+        print(f'Found {len(top)} similar issue(s). Posting comment...')
+        post_comment(repo, issue_number, body, token)
 
-    # Build comment body
-    top_matches = matches[:MAX_SIMILAR_TO_REPORT]
-    comment_lines = [
-        '## Possible Duplicate Issues',
-        '',
-        'The following existing issues appear to be similar to this one:',
-        '',
-    ]
-    for m in top_matches:
-        pct = int(m['score'] * 100)
-        comment_lines.append(f'- #{m["number"]}: {m["title"]} _(similarity: {pct}%)_')
-
-    comment_lines += [
-        '',
-        '---',
-        '_If this is a duplicate, please close this issue and add your comments to the existing one._',
-        '_If it is **not** a duplicate, feel free to remove the `duplicate` label._',
-    ]
-
-    comment_body = '\n'.join(comment_lines)
-    post_comment(repo, issue_number, comment_body)
-    print(f'Posted duplicate warning comment on issue #{issue_number}')
+    except Exception as exc:
+        # Dedup is a non-critical auxiliary task. Never block the Issue workflow.
+        print(f'[error] Unhandled exception in dedup: {exc}')
+        sys.exit(0)
 
 
 if __name__ == '__main__':
